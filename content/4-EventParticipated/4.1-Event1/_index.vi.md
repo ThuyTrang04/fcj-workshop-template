@@ -6,120 +6,74 @@ chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
+
+## Bài thu hoạch "Automated Prompt Engineering: Enhancing LLM Output Quality"
 
 ### Mục Đích Của Sự Kiện
-
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+* Chia sẻ về nghệ thuật giao tiếp hiệu quả với trí tuệ nhân tạo (AI).
+* Phân tích tầm quan trọng của Prompt Engineering trong việc tối ưu hóa chi phí và hiệu suất.
+* Hướng dẫn các thành phần cốt lõi để tạo ra một Prompt chất lượng cao.
+* Giới thiệu các kỹ thuật Prompt nâng cao và công cụ tự động hóa quy trình.
 
 ### Danh Sách Diễn Giả
-
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+* **Nguyen Tuan Thinh** - DevOps/Cloud Engineer tại First Cloud AI Journey.
 
 ### Nội Dung Nổi Bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Tầm quan trọng của Prompt Engineering
+Việc sử dụng các Prompt quá chung chung sẽ dẫn đến các vấn đề:
+* **Lãng phí Token:** Làm tăng chi phí sử dụng AI một cách không cần thiết.
+* **Kết quả không nhất quán:** Chỉ dẫn mơ hồ khiến AI đưa ra phản hồi kém chất lượng.
+* **Giảm năng suất:** Tốn thời gian điều chỉnh nhiều lần thay vì có kết quả ngay.
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+#### Các thành phần của một Prompt tuyệt vời (Key Components)
+Để AI hoạt động chính xác, một Prompt cần có 7 yếu tố:
+1. **Role:** Thiết lập vai trò cho mô hình (ví dụ: "Bạn là một chuyên gia tư vấn nghề nghiệp").
+2. **Instruction:** Chỉ thị rõ ràng việc cần làm.
+3. **Context:** Cung cấp thông tin nền liên quan.
+4. **Input Data:** Dữ liệu cụ thể cần xử lý.
+5. **Output Format:** Quy định cấu trúc đầu ra (JSON, Markdown, v.v.).
+6. **Examples:** Cung cấp ví dụ mẫu (Few-shot prompting).
+7. **Constraints:** Các giới hạn về độ dài, ngôn ngữ hoặc những điều không được làm.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### Kinh tế học Token (Token Economics)
+* Hiểu về cách AI tính phí dựa trên Token (đơn vị nhỏ hơn từ ngữ).
+* Phân biệt chi phí giữa Input Token và Output Token để tối ưu ngân sách.
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+#### Kỹ thuật Prompt nâng cao
+* **Chain-of-Thought (CoT):** Hướng dẫn AI suy nghĩ theo từng bước để tăng tính logic.
+* **Self-Consistency:** Chạy nhiều luồng suy nghĩ và chọn kết quả phổ biến nhất.
+* **Tree-of-Thoughts (ToT):** Cho phép AI khám phá nhiều hướng giải quyết vấn đề.
+* **RAG (Retrieval-Augmented Generation):** Kết hợp dữ liệu bên ngoài để AI trả lời chính xác hơn.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
-
-#### Domain-Driven Design (DDD)
-
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
-
-#### Event-Driven Architecture
-
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
-
-#### Compute Evolution
-
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
-
-#### Amazon Q Developer
-
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+#### Công cụ Proptimizer
+* Giới thiệu trình duyệt mở rộng (Browser Extension) giúp tối ưu hóa Prompt trên nền tảng Web.
+* Kiến trúc hệ thống dựa trên AWS: **Amazon Bedrock**, **AWS Lambda**, và **Amazon DynamoDB**.
 
 ### Những Gì Học Được
 
-#### Tư Duy Thiết Kế
+#### Tư Duy Kỹ Thuật
+* **Be Clear & Specific:** Luôn ưu tiên sự cụ thể và ngôn ngữ chỉ thị trực tiếp.
+* **Describe DOs, not DON'Ts:** Tập trung mô tả những gì AI nên làm thay vì chỉ cấm đoán.
+* **Phân tách dữ liệu:** Sử dụng các ký hiệu phân cách (Delimiters) để tách biệt các phần.
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
-
-#### Kiến Trúc Kỹ Thuật
-
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
-
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
+#### Chiến Lược Tối Ưu
+* Cách chia nhỏ các yêu cầu phức tạp thành các phân đoạn nhỏ hơn để AI xử lý hiệu quả.
+* Chấp nhận câu trả lời "Tôi không biết" từ AI để tránh hiện tượng ảo giác (hallucination).
 
 ### Ứng Dụng Vào Công Việc
-
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+* Tối ưu hóa lại các Prompt trong việc viết Test Case và phân tích yêu cầu (BA).
+* Sử dụng các kỹ thuật CoT để yêu cầu AI giải quyết các logic lập trình phức tạp trong Java/Flutter.
+* Thử nghiệm công cụ Proptimizer để tăng tốc độ làm việc với tài liệu trên trình duyệt.
 
 ### Trải nghiệm trong event
+* Được tiếp cận với kiến thức chuyên sâu về cách vận hành của các mô hình ngôn ngữ lớn (LLM).
+* Hiểu rõ kiến trúc hạ tầng AWS đằng sau các ứng dụng AI hiện đại thông qua sơ đồ Solution Architecture.
+* Workshop cung cấp nhiều ví dụ thực tế, từ việc viết bài đăng mạng xã hội đến việc cải thiện nội dung giới thiệu bản thân cho sinh viên mới tốt nghiệp.
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
 
 #### Một số hình ảnh khi tham gia sự kiện
 * Thêm các hình ảnh của các bạn tại đây
+  [cite_start]
 > Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.

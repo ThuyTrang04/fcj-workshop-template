@@ -1,59 +1,44 @@
 ---
 title: "Worklog Tuần 1"
-date: 2024-01-01
+date: 2026-04-17
 weight: 1
 chapter: false
 pre: " <b> 1.1. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
-
 ### Mục tiêu tuần 1:
-
 * Kết nối, làm quen với các thành viên trong First Cloud Journey.
 * Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
+* Nắm vững kiến thức nền tảng về điện toán đám mây AWS, hạ tầng toàn cầu và triết lý vận hành.
+* Trang bị bộ kỹ năng bổ trợ: Sử dụng **Visual Studio Code**, viết tài liệu bằng **Markdown**.
+* Thành thạo phần mềm **Draw.io** để vẽ sơ đồ kiến trúc hệ thống chuẩn xác.
+* Tự xây dựng lộ trình phát triển cho kỹ sư đám mây (Cloud Engineer).
 
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --------- | ------------ | --------------- | -------------- |
+| 2 | - Tìm hiểu tổng quan AWS: Hạ tầng toàn cầu, Region, AZs. <br> - Nghiên cứu triết lý vận hành và lộ trình Cloud Engineer. | 17/04/2026 | 17/04/2026 | AWS Study Group |
+| 3 | - Thiết lập môi trường làm việc với **Visual Studio Code**. <br> - Học cú pháp **Markdown** để viết nội dung Workshop. | 18/04/2026 | 18/04/2026 | Hugo/Markdown Guide |
+| 4 | - Thực hành vẽ sơ đồ kiến trúc trên **Draw.io**. <br> - Tìm hiểu phương pháp tối ưu hóa chi phí (Cost Optimization). | 19/04/2026 | 19/04/2026 | Draw.io AWS Icons |
+| 5 | - Khởi tạo tài khoản AWS và thực hành quản lý dịch vụ cơ bản. <br> - Áp dụng quy chuẩn thiết kế hệ thống tối ưu. | 20/04/2026 | 20/04/2026 | AWS Workshop |
+| 6 | - Hoàn thiện dự án cá nhân đầu tiên và viết báo cáo trên trang Hugo. | 24/04/2026 | 24/04/2026 | Cá nhân |
 
 ### Kết quả đạt được tuần 1:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
+* **Về Kiến thức AWS:**
+    * Hiểu rõ cách thức vận hành của hạ tầng toàn cầu và các nhóm dịch vụ cốt lõi.
+    * Nắm vững phương pháp quản lý dịch vụ và tối ưu hóa chi phí thực tế.
+* **Về Công cụ & Kỹ năng thực thi:**
+    * Sử dụng thành thạo **Markdown** để trình bày nội dung workshop một cách chuyên nghiệp trên nền tảng Hugo.
+    * Có khả năng thiết kế sơ đồ kiến trúc hệ thống trên **Draw.io** đúng quy chuẩn kỹ thuật.
+    * Tự tin triển khai các dự án cá nhân và áp dụng công nghệ AWS vào môi trường thực tế.
+* **Về Bài Lab đã Thực Hành:**
+* Thiết kế sơ đồ kiến trúc hệ thống trên **Draw.io**
+* ![alt text](image.png)
+* **Hoàn Thành 5 bài lab lấy được $200.000 USD**
+  ![alt text](image-1.png)
+{{% notice success %}}
+**Tóm tắt:** Tuần 1 giúp chuyển hóa từ lý thuyết thuần túy sang kỹ năng thực thi chuyên sâu, tạo tiền đề để trở thành một Cloud Engineer chuyên nghiệp.
+{{% /notice %}}
 
 

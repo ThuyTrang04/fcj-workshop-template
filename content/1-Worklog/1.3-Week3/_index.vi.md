@@ -1,59 +1,71 @@
 ---
 title: "Worklog Tuần 3"
-date: 2024-01-01
+date: 2026-04-25
 weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
-
 
 ### Mục tiêu tuần 3:
 
-* Kết nối, làm quen với các thành viên trong First Cloud Journey.
-* Hiểu dịch vụ AWS cơ bản, cách dùng console & CLI.
-
+* Hiểu rõ khái niệm và cách thiết lập **Amazon VPC** để tạo môi trường mạng ảo riêng biệt.
+* Thành thạo kỹ năng quản lý IP, phân chia Subnet và cấu hình định tuyến (Route Table).
+* Triển khai các lớp bảo mật mạng: **Security Groups** và **Network ACLs**.
+* Tìm hiểu các phương thức kết nối internet và hạ tầng Hybrid (Internet Gateway, NAT Gateway, VPN).
+* Nghiên cứu các giải pháp nâng cao như VPC Peering và Load Balancing (ELB).
+* Triển khai các thành phần điều phối mạng: **Subnet**, **Internet Gateway**, và **Route Table**.
+* Quản trị máy chủ **EC2** an toàn qua **NAT Gateway** và **Instance Connect Endpoint**.
 ### Các công việc cần triển khai trong tuần này:
-| Thứ | Công việc                                                                                                                                                                                   | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu                            |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------- | ----------------------------------------- |
-| 2   | - Làm quen với các thành viên FCJ <br> - Đọc và lưu ý các nội quy, quy định tại đơn vị thực tập                                                                                             | 11/08/2025   | 11/08/2025      |
-| 3   | - Tìm hiểu AWS và các loại dịch vụ <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                            | 12/08/2025   | 12/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Tạo AWS Free Tier account <br> - Tìm hiểu AWS Console & AWS CLI <br> - **Thực hành:** <br>&emsp; + Tạo AWS account <br>&emsp; + Cài AWS CLI & cấu hình <br> &emsp; + Cách sử dụng AWS CLI | 13/08/2025   | 13/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Tìm hiểu EC2 cơ bản: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - Các cách remote SSH vào EC2 <br> - Tìm hiểu Elastic IP   <br>                  | 14/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Thực hành:** <br>&emsp; + Tạo EC2 instance <br>&emsp; + Kết nối SSH <br>&emsp; + Gắn EBS volume                                                                                         | 15/08/2025   | 15/08/2025      | <https://cloudjourney.awsstudygroup.com/> |
 
+| Thứ | Công việc | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu |
+| --- | --------- | ------------ | --------------- | -------------- |
+| 2 | - Tìm hiểu tổng quan về VPC, dải địa chỉ IP (CIDR) và cách chia Subnet. <br> - Cấu hình Route Table cho lưu lượng nội bộ. | 27/04/2026 | 27/04/2026 | AWS Networking Guide |
+| 3 | - Thiết lập kết nối Internet qua **Internet Gateway** (Public Subnet). <br> - Cấu hình **NAT Gateway** để cho phép Private Subnet ra ngoài internet. | 28/04/2026 | 28/04/2026 | AWS Documentation |
+| 4 | - Thực hành bảo mật: Cấu hình **Security Groups** (Stateful) và **NACLs** (Stateless). <br> - Phân biệt cơ chế hoạt động của 2 lớp bảo mật này. | 29/04/2026 | 29/04/2026 | Security Essentials |
+| 5 | - Nghiên cứu kết nối nâng cao: **VPC Peering**, **VPN** và **Transit Gateway**. <br> - Tìm hiểu về **Elastic Load Balancing (ELB)** để tăng độ sẵn sàng. <br> - Phân biệt Security Group (Stateful) và Network ACL (Stateless). | 30/04/2026 | 30/04/2026 | AWS Study Group |
+| 6 | - **Thực hành nâng cao:** Cấu hình **NAT Gateway** cho Private Subnet. <br> - Thiết lập **EC2 Instance Connect Endpoint** để quản trị từ xa an toàn. | 1/05/2026 | 1/05/2026 | AWS Workshop |
 
 ### Kết quả đạt được tuần 3:
 
-* Hiểu AWS là gì và nắm được các nhóm dịch vụ cơ bản: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
-
-* Đã tạo và cấu hình AWS Free Tier account thành công.
-
-* Làm quen với AWS Management Console và biết cách tìm, truy cập, sử dụng dịch vụ từ giao diện web.
-
-* Cài đặt và cấu hình AWS CLI trên máy tính bao gồm:
-  * Access Key
-  * Secret Key
-  * Region mặc định
-  * ...
-
-* Sử dụng AWS CLI để thực hiện các thao tác cơ bản như:
-
-  * Kiểm tra thông tin tài khoản & cấu hình
-  * Lấy danh sách region
-  * Xem dịch vụ EC2
-  * Tạo và quản lý key pair
-  * Kiểm tra thông tin dịch vụ đang chạy
-  * ...
-
-* Có khả năng kết nối giữa giao diện web và CLI để quản lý tài nguyên AWS song song.
-* ...
-
+* **Về Tư duy hệ thống mạng:**
+    * Có khả năng thiết lập một môi trường mạng ảo riêng biệt, an toàn trên đám mây.
+    * Nắm vững cách kiểm soát lưu lượng truy cập ra/vào thông qua hai lớp phòng thủ (SG và NACL).
+* **Về Kỹ năng triển khai:**
+    * Biết cách kết nối tài nguyên đám mây với internet hoặc hạ tầng tại chỗ (On-premise) thông qua VPN/Direct Connect.
+    * Hiểu phương pháp tối ưu hóa khả năng mở rộng của ứng dụng bằng cách sử dụng bộ cân bằng tải (Load Balancer).
+    * Có kỹ năng xử lý các sự cố cơ bản liên quan đến kết nối và định tuyến trong VPC.
+* **Create VPC:**
+  ![alt text](image.png)
+* **Create Subnet:**
+  ![alt text](image-1.png)
+* **Create Internet gateways :**
+  ![alt text](image-2.png)
+* **Create Route tables :**
+  ![alt text](image-3.png)
+* **Create Security Groups  :** 
+  ![alt text](image-4.png)
+* **Create EC2  :** 
+  ![alt text](image-5.png)
+  ![alt text](image-6.png)
+  ![alt text](image-7.png)
+  ![alt text](image-8.png)
+  ![alt text](image-9.png)
+  ![alt text](image-10.png)
+  ![alt text](image-11.png)
+  ![alt text](image-12.png)
+  ![alt text](image-13.png)
+* **Create NAT Gateways :** 
+  ![alt text](image-14.png)
+  ![alt text](image-15.png)
+  ![alt text](image-16.png)
+  ![alt text](image-17.png)
+  ![alt text](image-18.png)
+  ![alt text](image-19.png)
+* **Create EC2 Instance Connect Endpoint :** 
+  ![alt text](image-20.png)
+  ![alt text](image-21.png)
+  ![alt text](image-22.png)
+{{% notice success %}}
+**Tóm tắt:** Việc làm chủ VPC giúp xây dựng nền tảng vững chắc để triển khai các dịch vụ khác như EC2, RDS một cách an toàn và tối ưu nhất.
+{{% /notice %}}
 
