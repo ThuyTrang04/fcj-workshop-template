@@ -6,120 +6,113 @@ chapter: false
 pre: " <b> 4.2. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# Bài thu hoạch “GenAI-powered App-DB Modernization workshop”
-
+## Bài thu hoạch "AWS Vietnam Community Day 2026"
+**Thời gian:** 09:00 ngày 23/05/2026
 ### Mục Đích Của Sự Kiện
-
-- Chia sẻ best practices trong thiết kế ứng dụng hiện đại
-- Giới thiệu phương pháp DDD và event-driven architecture
-- Hướng dẫn lựa chọn compute services phù hợp
-- Giới thiệu công cụ AI hỗ trợ development lifecycle
+* Cập nhật các xu hướng mới nhất về Cloud Computing và Trí tuệ nhân tạo (AI).
+* Tìm hiểu cách doanh nghiệp ứng dụng AI và AWS vào thực tế.
+* Kết nối cộng đồng công nghệ và chia sẻ kinh nghiệm từ các chuyên gia.
+* Giúp sinh viên định hướng nghề nghiệp trong lĩnh vực Cloud và AI.
 
 ### Danh Sách Diễn Giả
-
-- **Jignesh Shah** - Director, Open Source Databases
-- **Erica Liu** - Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** - Assc. Specialist SA, Serverless Amazon Web Services
+* **Anh Tịnh** – Build Second Brain: Context is Everything.
+* **Nguyen Tuan Thinh** – From Edge to Origin: CloudFront as Your Foundation.
+* **Pham Ng Hai Anh** – Friendly AI Assistant with Amazon Q.
+* **Team VIB** – 36 Hours with LotusHacks: Building UTMorpho from Idea to Reality.
+* **Đào Đức** – Non-Determinism of "Deterministic" LLM Settings.
+* **Lâm Cát Vy** – Enterprise-Grade Multi-Agent System.
 
 ### Nội Dung Nổi Bật
 
-#### Đưa ra các ảnh hưởng tiêu cực của kiến trúc ứng dụng cũ
+#### Build Second Brain: Context is Everything
+Diễn giả nhấn mạnh rằng trong thời đại AI, dữ liệu và ngữ cảnh (Context) đóng vai trò cực kỳ quan trọng. Một mô hình AI mạnh chưa chắc tạo ra kết quả tốt nếu thiếu ngữ cảnh phù hợp.
 
-- Thời gian release sản phẩm lâu → Mất doanh thu/bỏ lỡ cơ hội
-- Hoạt động kém hiệu quả → Mất năng suất, tốn kém chi phí
-- Không tuân thủ các quy định về bảo mật → Mất an ninh, uy tín
+Một số bài học quan trọng:
+* Context quyết định chất lượng đầu ra của AI.
+* Cần tổ chức tri thức cá nhân để AI hỗ trợ hiệu quả hơn.
+* Xây dựng "Second Brain" giúp lưu trữ và tái sử dụng kiến thức.
 
-#### Chuyển đổi sang kiến trúc ứng dụng mới - Microservice Architecture
+#### From Edge to Origin: CloudFront as Your Foundation
+Buổi chia sẻ giới thiệu về Amazon CloudFront và vai trò của CDN trong hệ thống hiện đại.
 
-Chuyển đổi thành hệ thống modular – từng chức năng là một **dịch vụ độc lập** giao tiếp với nhau qua **sự kiện** với 3 trụ cột cốt lõi:
+Các lợi ích của CloudFront:
+* Giảm độ trễ khi truy cập ứng dụng.
+* Tăng tốc độ phân phối nội dung toàn cầu.
+* Tăng cường bảo mật với AWS Shield và WAF.
+* Tối ưu chi phí vận hành.
 
-- **Queue Management**: Xử lý tác vụ bất đồng bộ
-- **Caching Strategy:** Tối ưu performance
-- **Message Handling:** Giao tiếp linh hoạt giữa services
+Qua bài chia sẻ, tôi hiểu rõ hơn cách CloudFront hoạt động và vai trò của CDN trong các hệ thống phân tán.
 
-#### Domain-Driven Design (DDD)
+#### Friendly AI Assistant with Amazon Q
+Diễn giả giới thiệu Amazon Q – trợ lý AI dành cho doanh nghiệp trên nền tảng AWS.
 
-- **Phương pháp 4 bước**: Xác định domain events → sắp xếp timeline → identify actors → xác định bounded contexts
-- **Case study bookstore**: Minh họa cách áp dụng DDD thực tế
-- **Context mapping**: 7 patterns tích hợp bounded contexts
+Các khả năng nổi bật:
+* Truy vấn dữ liệu doanh nghiệp bằng ngôn ngữ tự nhiên.
+* Hỗ trợ lập trình và phân tích tài liệu.
+* Tự động hóa quy trình làm việc.
+* Tăng năng suất cho nhân viên.
 
-#### Event-Driven Architecture
+#### 36 Hours with LotusHacks: Building UTMorpho from Idea to Reality
+Team VIB chia sẻ hành trình xây dựng sản phẩm trong cuộc thi hackathon kéo dài 36 giờ.
 
-- **3 patterns tích hợp**: Publish/Subscribe, Point-to-point, Streaming
-- **Lợi ích**: Loose coupling, scalability, resilience
-- **So sánh sync vs async**: Hiểu rõ trade-offs (sự đánh đổi)
+Quá trình phát triển gồm:
+* Xác định vấn đề thực tế.
+* Thiết kế giải pháp.
+* Xây dựng sản phẩm mẫu.
+* Hoàn thiện và thuyết trình.
 
-#### Compute Evolution
+Phiên chia sẻ giúp tôi hiểu rõ hơn về tinh thần làm việc nhóm và phát triển sản phẩm trong thời gian ngắn.
 
-- **Shared Responsibility Model**: Từ EC2 → ECS → Fargate → Lambda
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value
-- **Functions vs Containers**: Criteria lựa chọn phù hợp
+#### Non-Determinism of "Deterministic" LLM Settings
+Buổi chia sẻ giải thích cơ chế hoạt động của các mô hình ngôn ngữ lớn (LLM).
 
-#### Amazon Q Developer
+Một số khái niệm quan trọng:
+* Token và xác suất sinh token.
+* Temperature, Top-K và Top-P.
+* Hiện tượng kết quả khác nhau dù cùng một Prompt.
+* Các kỹ thuật giảm sai lệch của mô hình.
 
-- **SDLC automation**: Từ planning đến maintenance
-- **Code transformation**: Java upgrade, .NET modernization
-- **AWS Transform agents**: VMware, Mainframe, .NET migration
+Nhờ đó, tôi hiểu rõ hơn cách AI tạo ra nội dung và nguyên nhân dẫn đến hiện tượng hallucination.
+
+#### Enterprise-Grade Multi-Agent System
+Diễn giả giới thiệu mô hình Multi-Agent AI trong doanh nghiệp.
+
+Các nội dung nổi bật:
+* Nhiều AI Agent phối hợp giải quyết bài toán phức tạp.
+* Quản lý bảo mật và phân quyền.
+* Xây dựng hệ thống AI có khả năng mở rộng.
+* Áp dụng vào các bài toán tài chính và doanh nghiệp.
 
 ### Những Gì Học Được
 
-#### Tư Duy Thiết Kế
+#### Kiến Thức Kỹ Thuật
+* Hiểu được vai trò của Context trong AI.
+* Tìm hiểu nguyên lý hoạt động của LLM.
+* Biết cách ứng dụng Amazon CloudFront trong hệ thống phân tán.
+* Làm quen với Amazon Q và kiến trúc Multi-Agent AI.
 
-- **Business-first approach**: Luôn bắt đầu từ business domain, không phải technology
-- **Ubiquitous language**: Importance của common vocabulary giữa business và tech teams
-- **Bounded contexts**: Cách identify và manage complexity trong large systems
+#### Kỹ Năng Mềm
+* Kỹ năng làm việc nhóm trong môi trường áp lực cao.
+* Kỹ năng giải quyết vấn đề thực tế.
+* Tư duy thiết kế và phát triển sản phẩm công nghệ.
 
-#### Kiến Trúc Kỹ Thuật
+### Ứng Dụng Vào Học Tập Và Công Việc
 
-- **Event storming technique**: Phương pháp thực tế để mô hình hóa quy trình kinh doanh
-- Sử dụng **Event-driven communication** thay vì synchronous calls
-- **Integration patterns**: Hiểu khi nào dùng sync, async, pub/sub, streaming
-- **Compute spectrum**: Criteria chọn từ VM → containers → serverless
-
-#### Chiến Lược Hiện Đại Hóa
-
-- **Phased approach**: Không rush, phải có roadmap rõ ràng
-- **7Rs framework**: Nhiều con đường khác nhau tùy thuộc vào đặc điểm của mỗi ứng dụng
-- **ROI measurement**: Cost reduction + business agility
-
-### Ứng Dụng Vào Công Việc
-
-- **Áp dụng DDD** cho project hiện tại: Event storming sessions với business team
-- **Refactor microservices**: Sử dụng bounded contexts để identify service boundaries
-- **Implement event-driven patterns**: Thay thế một số sync calls bằng async messaging
-- **Serverless adoption**: Pilot AWS Lambda cho một số use cases phù hợp
-- **Try Amazon Q Developer**: Integrate vào development workflow để boost productivity
+* Áp dụng AI để hỗ trợ học tập và lập trình.
+* Tối ưu Prompt khi sử dụng các công cụ AI.
+* Ứng dụng kiến thức AWS vào các bài lab và dự án cá nhân.
+* Nghiên cứu thêm về Cloud Computing và AI để phục vụ định hướng nghề nghiệp.
 
 ### Trải nghiệm trong event
 
-Tham gia workshop **“GenAI-powered App-DB Modernization”** là một trải nghiệm rất bổ ích, giúp tôi có cái nhìn toàn diện về cách hiện đại hóa ứng dụng và cơ sở dữ liệu bằng các phương pháp và công cụ hiện đại. Một số trải nghiệm nổi bật:
-
-#### Học hỏi từ các diễn giả có chuyên môn cao
-- Các diễn giả đến từ AWS và các tổ chức công nghệ lớn đã chia sẻ **best practices** trong thiết kế ứng dụng hiện đại.
-- Qua các case study thực tế, tôi hiểu rõ hơn cách áp dụng **Domain-Driven Design (DDD)** và **Event-Driven Architecture** vào các project lớn.
-
-#### Trải nghiệm kỹ thuật thực tế
-- Tham gia các phiên trình bày về **event storming** giúp tôi hình dung cách **mô hình hóa quy trình kinh doanh** thành các domain events.
-- Học cách **phân tách microservices** và xác định **bounded contexts** để quản lý sự phức tạp của hệ thống lớn.
-- Hiểu rõ trade-offs giữa **synchronous và asynchronous communication** cũng như các pattern tích hợp như **pub/sub, point-to-point, streaming**.
-
-#### Ứng dụng công cụ hiện đại
-- Trực tiếp tìm hiểu về **Amazon Q Developer**, công cụ AI hỗ trợ SDLC từ lập kế hoạch đến maintenance.
-- Học cách **tự động hóa code transformation** và pilot serverless với **AWS Lambda**, từ đó nâng cao năng suất phát triển.
-
-#### Kết nối và trao đổi
-- Workshop tạo cơ hội trao đổi trực tiếp với các chuyên gia, đồng nghiệp và team business, giúp **nâng cao ngôn ngữ chung (ubiquitous language)** giữa business và tech.
-- Qua các ví dụ thực tế, tôi nhận ra tầm quan trọng của **business-first approach**, luôn bắt đầu từ nhu cầu kinh doanh thay vì chỉ tập trung vào công nghệ.
-
-#### Bài học rút ra
-- Việc áp dụng DDD và event-driven patterns giúp giảm **coupling**, tăng **scalability** và **resilience** cho hệ thống.
-- Chiến lược hiện đại hóa cần **phased approach** và đo lường **ROI**, không nên vội vàng chuyển đổi toàn bộ hệ thống.
-- Các công cụ AI như Amazon Q Developer có thể **boost productivity** nếu được tích hợp vào workflow phát triển hiện tại.
+* Tôi được tiếp cận với nhiều công nghệ mới về AI và Cloud Computing.
+* Các diễn giả chia sẻ nhiều kinh nghiệm thực tế từ doanh nghiệp.
+* Tôi hiểu rõ hơn cách AWS được ứng dụng trong các hệ thống hiện đại.
+* Sự kiện giúp tôi mở rộng kiến thức và định hướng phát triển nghề nghiệp trong tương lai.
+* Tôi đặc biệt ấn tượng với các ứng dụng AI trên nền tảng AWS và kiến trúc Multi-Agent.
 
 #### Một số hình ảnh khi tham gia sự kiện
-* Thêm các hình ảnh của các bạn tại đây
-> Tổng thể, sự kiện không chỉ cung cấp kiến thức kỹ thuật mà còn giúp tôi thay đổi cách tư duy về thiết kế ứng dụng, hiện đại hóa hệ thống và phối hợp hiệu quả hơn giữa các team.
+* Thêm hình ảnh chụp tại sự kiện vào đây.
+
+> Tổng thể, AWS Vietnam Community Day không chỉ mang lại kiến thức chuyên môn về Cloud Computing và AI mà còn giúp tôi mở rộng tư duy công nghệ, hiểu rõ hơn xu hướng phát triển của ngành và có thêm động lực học tập để phát triển sự nghiệp trong tương lai.
