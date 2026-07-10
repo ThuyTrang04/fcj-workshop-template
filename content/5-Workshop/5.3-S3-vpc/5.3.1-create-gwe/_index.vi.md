@@ -5,36 +5,73 @@ weight : 1
 chapter : false
 pre : " <b> 5.3.1 </b> "
 ---
+```markdown
+---
+title : "Triển khai Amazon S3"
+date : 2026-07-10
+weight : 3
+chapter : false
+pre : " <b> 5.3. </b> "
+---
 
-1. Mở [Amazon VPC console](https://us-east-1.console.aws.amazon.com/vpc/home?region=us-east-1#Home:)
-2. Trong thanh điều hướng, chọn **Endpoints**, click **Create Endpoint**:
+## Tổng quan
 
-{{% notice note %}}
-Bạn sẽ thấy 6 điểm cuối VPC hiện có hỗ trợ AWS Systems Manager (SSM). Các điểm cuối này được Mẫu CloudFormation triển khai tự động cho workshop này.
-{{% /notice %}}
+Trong chương này, chúng ta sẽ tạo một **Amazon S3 Bucket** để lưu trữ mã nguồn Frontend của hệ thống **AWS_OmniStay**. Bucket sẽ được cấu hình ở chế độ **Private** và được sử dụng làm Origin cho Amazon CloudFront ở các chương tiếp theo.
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/endpoints.png)
+---
 
-3. Trong Create endpoint console:
-+ Đặt tên cho endpoint: s3-gwe
-+ Trong service category, chọn **aws services**
+## Nội dung thực hiện
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/create-s3-gwe1.png)
+### Bước 1: Tạo S3 Bucket
 
-+ Trong **Services**, gõ "s3" trong hộp tìm kiếm và chọn dịch vụ với loại **gateway**
+- Đăng nhập **AWS Management Console**.
+- Tìm kiếm **Amazon S3**.
+- Chọn **Create bucket**.
+![alt text](image.png)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/services.png)
+Cấu hình:
 
-+ Đối với VPC, chọn **VPC Cloud** từ drop-down menu.
-+ Đối với Route tables, chọn bảng định tuyến mà đã liên kết với 2 subnets (lưu ý: đây không phải là bảng định tuyến chính cho VPC mà là bảng định tuyến thứ hai do CloudFormation tạo).
+- **Bucket name:** `aws-omnistay-frontend`
+- **Region:** Asia Pacific (Singapore) `ap-southeast-1`
+- **Bucket type:** General purpose
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/vpc.png)
+📷 **Chụp hình:**
 
-+ Đối với Policy, để tùy chọn mặc định là Full access để cho phép toàn quyền truy cập vào dịch vụ. Bạn sẽ triển khai VPC endpoint policy trong phần sau để chứng minh việc hạn chế quyền truy cập vào S3 bucket dựa trên các policies.
+- Giao diện tạo Bucket (`create-bucket.png`)
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/policy.png)
+---
 
-+ Không thêm tag vào VPC endpoint.
-+ Click Create endpoint, click x sau khi nhận được thông báo tạo thành công.
+### Bước 2: Cấu hình Bucket
 
-![endpoint](/images/5-Workshop/5.3-S3-vpc/complete.png)
+Giữ nguyên các thiết lập mặc định:
+
+- Block all public access: **Enable**
+- Bucket Versioning: **Enable**
+
+Sau đó chọn **Create bucket**.
+
+📷 **Chụp hình:**
+
+- Cấu hình Block Public Access (`bucket-setting.png`)
+
+---
+
+### Bước 3: Kiểm tra Bucket
+
+Sau khi Bucket được tạo thành công, kiểm tra:
+
+- Bucket đã xuất hiện trong danh sách.
+- Region là `ap-southeast-1`.
+- Public Access được Block.
+
+📷 **Chụp hình:**
+
+- Danh sách Bucket (`bucket-list.png`)
+
+---
+
+## Kết quả
+
+Đến bước này, Amazon S3 Bucket đã được tạo thành công và sẵn sàng lưu trữ mã nguồn Frontend của hệ thống AWS_OmniStay. Trong chương tiếp theo, chúng ta sẽ tải mã nguồn từ máy tính cục bộ lên Amazon S3.
+```
+
