@@ -6,122 +6,122 @@ chapter: false
 pre: " <b> 3.3. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-# Bắt đầu với healthcare data lakes: Sử dụng microservices
+# 7 cách giúp tối ưu chi phí khi triển khai ứng dụng trên AWS
 
-Các data lake có thể giúp các bệnh viện và cơ sở y tế chuyển dữ liệu thành những thông tin chi tiết về doanh nghiệp và duy trì hoạt động kinh doanh liên tục, đồng thời bảo vệ quyền riêng tư của bệnh nhân. **Data lake** là một kho lưu trữ tập trung, được quản lý và bảo mật để lưu trữ tất cả dữ liệu của bạn, cả ở dạng ban đầu và đã xử lý để phân tích. data lake cho phép bạn chia nhỏ các kho chứa dữ liệu và kết hợp các loại phân tích khác nhau để có được thông tin chi tiết và đưa ra các quyết định kinh doanh tốt hơn.
+Một trong những bài học lớn nhất mình nhận ra sau thời gian học và triển khai ứng dụng trên AWS là **chi phí luôn là yếu tố cần được cân nhắc ngay từ giai đoạn thiết kế hệ thống**. Ban đầu, mình chỉ tập trung làm sao để ứng dụng hoạt động ổn định, nhưng khi bắt đầu sử dụng nhiều dịch vụ hơn, mình nhận ra rằng nếu quản lý tài nguyên chưa hợp lý thì chi phí có thể phát sinh cao hơn dự kiến.
 
-Bài đăng trên blog này là một phần của loạt bài lớn hơn về việc bắt đầu cài đặt data lake dành cho lĩnh vực y tế. Trong bài đăng blog cuối cùng của tôi trong loạt bài, *“Bắt đầu với data lake dành cho lĩnh vực y tế: Đào sâu vào Amazon Cognito”*, tôi tập trung vào các chi tiết cụ thể của việc sử dụng Amazon Cognito và Attribute Based Access Control (ABAC) để xác thực và ủy quyền người dùng trong giải pháp data lake y tế. Trong blog này, tôi trình bày chi tiết cách giải pháp đã phát triển ở cấp độ cơ bản, bao gồm các quyết định thiết kế mà tôi đã đưa ra và các tính năng bổ sung được sử dụng. Bạn có thể truy cập các code samples cho giải pháp tại Git repo này để tham khảo.
+Theo **AWS Well-Architected Framework**, **Cost Optimization** là một trong những trụ cột quan trọng bên cạnh bảo mật, độ tin cậy, hiệu năng, hiệu quả vận hành và tính bền vững. Điều đó cho thấy tối ưu chi phí không phải là cắt giảm tài nguyên một cách máy móc mà là sử dụng đúng dịch vụ, đúng cấu hình và đúng thời điểm.
 
----
-
-## Hướng dẫn kiến trúc
-
-Thay đổi chính kể từ lần trình bày cuối cùng của kiến trúc tổng thể là việc tách dịch vụ đơn lẻ thành một tập hợp các dịch vụ nhỏ để cải thiện khả năng bảo trì và tính linh hoạt. Việc tích hợp một lượng lớn dữ liệu y tế khác nhau thường yêu cầu các trình kết nối chuyên biệt cho từng định dạng; bằng cách giữ chúng được đóng gói riêng biệt với microservices, chúng ta có thể thêm, xóa và sửa đổi từng trình kết nối mà không ảnh hưởng đến những kết nối khác. Các microservices được kết nối rời thông qua tin nhắn publish/subscribe tập trung trong cái mà tôi gọi là “pub/sub hub”.
-
-Giải pháp này đại diện cho những gì tôi sẽ coi là một lần lặp nước rút hợp lý khác từ last post của tôi. Phạm vi vẫn được giới hạn trong việc nhập và phân tích cú pháp đơn giản của các **HL7v2 messages** được định dạng theo **Quy tắc mã hóa 7 (ER7)** thông qua giao diện REST.
-
-**Kiến trúc giải pháp bây giờ như sau:**
-
-> *Hình 1. Kiến trúc tổng thể; những ô màu thể hiện những dịch vụ riêng biệt.*
+Trong bài viết này, mình chia sẻ 7 kinh nghiệm thực tế giúp tối ưu chi phí khi triển khai ứng dụng trên AWS, đặc biệt phù hợp với sinh viên và những người mới bắt đầu tìm hiểu về điện toán đám mây.
 
 ---
 
-Mặc dù thuật ngữ *microservices* có một số sự mơ hồ cố hữu, một số đặc điểm là chung:  
-- Chúng nhỏ, tự chủ, kết hợp rời rạc  
-- Có thể tái sử dụng, giao tiếp thông qua giao diện được xác định rõ  
-- Chuyên biệt để giải quyết một việc  
-- Thường được triển khai trong **event-driven architecture**
+## 1. Chỉ sử dụng dịch vụ khi thật sự cần thiết
 
-Khi xác định vị trí tạo ranh giới giữa các microservices, cần cân nhắc:  
-- **Nội tại**: công nghệ được sử dụng, hiệu suất, độ tin cậy, khả năng mở rộng  
-- **Bên ngoài**: chức năng phụ thuộc, tần suất thay đổi, khả năng tái sử dụng  
-- **Con người**: quyền sở hữu nhóm, quản lý *cognitive load*
+Khi mới học AWS, mình từng khá choáng ngợp trước số lượng dịch vụ mà nền tảng này cung cấp. Vì muốn kiến trúc trông "chuyên nghiệp" hơn, mình từng nghĩ rằng hệ thống phải có CloudFront, AWS WAF, Auto Scaling, NAT Gateway hay Amazon ElastiCache ngay từ đầu.
 
----
+Tuy nhiên, với các ứng dụng nhỏ hoặc đồ án sinh viên, việc sử dụng quá nhiều dịch vụ không mang lại nhiều giá trị mà còn làm tăng chi phí và khiến việc quản lý hệ thống trở nên phức tạp hơn.
+![alt text](image.png)
+> **Hình 1. So sánh kiến trúc sử dụng quá nhiều dịch vụ và kiến trúc tối giản theo nguyên tắc "Start Simple, Scale Later".**
 
-## Lựa chọn công nghệ và phạm vi giao tiếp
-
-| Phạm vi giao tiếp                        | Các công nghệ / mô hình cần xem xét                                                        |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Trong một microservice                   | Amazon Simple Queue Service (Amazon SQS), AWS Step Functions                               |
-| Giữa các microservices trong một dịch vụ | AWS CloudFormation cross-stack references, Amazon Simple Notification Service (Amazon SNS) |
-| Giữa các dịch vụ                         | Amazon EventBridge, AWS Cloud Map, Amazon API Gateway                                      |
+> **Best Practice:** Chỉ triển khai các dịch vụ thực sự đáp ứng yêu cầu hiện tại của hệ thống. Khi lượng người dùng tăng hoặc xuất hiện nhu cầu mới, hãy mở rộng kiến trúc theo từng giai đoạn.
 
 ---
 
-## The pub/sub hub
+## 2. Tận dụng AWS Free Tier
 
-Việc sử dụng kiến trúc **hub-and-spoke** (hay message broker) hoạt động tốt với một số lượng nhỏ các microservices liên quan chặt chẽ.  
-- Mỗi microservice chỉ phụ thuộc vào *hub*  
-- Kết nối giữa các microservice chỉ giới hạn ở nội dung của message được xuất  
-- Giảm số lượng synchronous calls vì pub/sub là *push* không đồng bộ một chiều
+AWS Free Tier cung cấp miễn phí nhiều dịch vụ trong giới hạn nhất định như Amazon EC2, Amazon S3, Amazon RDS hay AWS Lambda. Đây là nguồn tài nguyên rất phù hợp để học tập, thực hành và xây dựng các dự án nhỏ.
 
-Nhược điểm: cần **phối hợp và giám sát** để tránh microservice xử lý nhầm message.
+Trong quá trình sử dụng, mình luôn kiểm tra xem dịch vụ và cấu hình lựa chọn có còn nằm trong giới hạn Free Tier hay không trước khi tạo tài nguyên.
 
----
-
-## Core microservice
-
-Cung cấp dữ liệu nền tảng và lớp truyền thông, gồm:  
-- **Amazon S3** bucket cho dữ liệu  
-- **Amazon DynamoDB** cho danh mục dữ liệu  
-- **AWS Lambda** để ghi message vào data lake và danh mục  
-- **Amazon SNS** topic làm *hub*  
-- **Amazon S3** bucket cho artifacts như mã Lambda
-
-> Chỉ cho phép truy cập ghi gián tiếp vào data lake qua hàm Lambda → đảm bảo nhất quán.
+> **Best Practice:** Luôn kiểm tra chính sách AWS Free Tier trước khi tạo tài nguyên để hạn chế các khoản phí phát sinh ngoài mong muốn.
 
 ---
 
-## Front door microservice
+## 3. Tắt hoặc xóa tài nguyên khi không còn sử dụng
 
-- Cung cấp API Gateway để tương tác REST bên ngoài  
-- Xác thực & ủy quyền dựa trên **OIDC** thông qua **Amazon Cognito**  
-- Cơ chế *deduplication* tự quản lý bằng DynamoDB thay vì SNS FIFO vì:
-  1. SNS deduplication TTL chỉ 5 phút
-  2. SNS FIFO yêu cầu SQS FIFO
-  3. Chủ động báo cho sender biết message là bản sao
+Sau khi hoàn thành bài thực hành hoặc kiểm thử, nhiều người thường quên dọn dẹp các tài nguyên đã tạo trên AWS.
 
----
+Ví dụ:
 
-## Staging ER7 microservice
+- Amazon EC2 khi dừng (Stop) vẫn có thể phát sinh chi phí lưu trữ Amazon EBS.
+- Elastic IP không gắn với EC2 đang hoạt động vẫn bị tính phí.
+- Snapshot hoặc EBS Volume không còn sử dụng vẫn tiếp tục phát sinh chi phí lưu trữ.
 
-- Lambda “trigger” đăng ký với pub/sub hub, lọc message theo attribute  
-- Step Functions Express Workflow để chuyển ER7 → JSON  
-- Hai Lambda:
-  1. Sửa format ER7 (newline, carriage return)
-  2. Parsing logic  
-- Kết quả hoặc lỗi được đẩy lại vào pub/sub hub
+Việc thường xuyên kiểm tra và dọn dẹp tài nguyên sẽ giúp giảm đáng kể chi phí vận hành.
+
+> **Best Practice:** Sau mỗi lần thực hành hoặc triển khai thử nghiệm, hãy kiểm tra và xóa các tài nguyên không còn sử dụng.
 
 ---
 
-## Tính năng mới trong giải pháp
+## 4. Theo dõi chi phí bằng AWS Budgets và AWS Cost Explorer
 
-### 1. AWS CloudFormation cross-stack references
-Ví dụ *outputs* trong core microservice:
-```yaml
-Outputs:
-  Bucket:
-    Value: !Ref Bucket
-    Export:
-      Name: !Sub ${AWS::StackName}-Bucket
-  ArtifactBucket:
-    Value: !Ref ArtifactBucket
-    Export:
-      Name: !Sub ${AWS::StackName}-ArtifactBucket
-  Topic:
-    Value: !Ref Topic
-    Export:
-      Name: !Sub ${AWS::StackName}-Topic
-  Catalog:
-    Value: !Ref Catalog
-    Export:
-      Name: !Sub ${AWS::StackName}-Catalog
-  CatalogArn:
-    Value: !GetAtt Catalog.Arn
-    Export:
-      Name: !Sub ${AWS::StackName}-CatalogArn
+Việc kiểm soát chi phí nên được thực hiện thường xuyên thay vì đợi đến cuối tháng mới xem hóa đơn.
+
+AWS Budgets cho phép thiết lập ngân sách và gửi email cảnh báo khi chi phí vượt quá ngưỡng đã đặt. Trong khi đó, AWS Cost Explorer cung cấp biểu đồ trực quan giúp theo dõi chi phí theo từng dịch vụ, từng tài khoản hoặc từng khoảng thời gian.
+
+Nhờ hai công cụ này, mình có thể nhanh chóng phát hiện dịch vụ nào đang tiêu tốn nhiều chi phí để điều chỉnh kịp thời.
+![alt text](image-1.png)
+> **Hình 2. Quy trình theo dõi và quản lý chi phí bằng AWS Budgets và AWS Cost Explorer.**
+
+> **Best Practice:** Thiết lập AWS Budgets ngay từ khi bắt đầu dự án và thường xuyên theo dõi chi phí bằng AWS Cost Explorer.
+
+---
+
+## 5. Lựa chọn đúng cấu hình tài nguyên (Right-sizing)
+
+Trong điện toán đám mây, cấu hình mạnh nhất chưa chắc là lựa chọn tối ưu nhất. Điều quan trọng là lựa chọn cấu hình phù hợp với nhu cầu thực tế.
+
+Đối với các môi trường học tập hoặc website nhỏ, Amazon EC2 loại `t2.micro` hoặc `t3.micro` thường đã đáp ứng tốt yêu cầu. Tương tự, nhiều ứng dụng chỉ cần Amazon RDS MySQL thay vì Aurora.
+
+Việc lựa chọn đúng cấu hình sẽ giúp tận dụng tài nguyên hiệu quả và giảm đáng kể chi phí vận hành.
+
+> **Best Practice:** Bắt đầu với cấu hình nhỏ, theo dõi hiệu năng và chỉ nâng cấp khi hệ thống thực sự cần.
+
+---
+
+## 6. Quản lý vòng đời dữ liệu và tối ưu lưu trữ
+
+Dung lượng lưu trữ tăng dần theo thời gian cũng là nguyên nhân khiến chi phí phát sinh.
+
+Đối với Amazon S3, mình thường thiết lập **Lifecycle Rule** để tự động chuyển dữ liệu ít truy cập sang các lớp lưu trữ có chi phí thấp hơn như **S3 Glacier Flexible Archive** hoặc **S3 Glacier Deep Archive**. Đồng thời, mình cũng thường xuyên kiểm tra và xóa các Snapshot hoặc EBS Volume không còn sử dụng.
+
+> **Best Practice:** Sử dụng Lifecycle Rule cho Amazon S3 và định kỳ dọn dẹp các tài nguyên lưu trữ không còn cần thiết.
+
+---
+
+## 7. Lựa chọn Region phù hợp và thiết kế đơn giản trước khi mở rộng
+
+Chi phí của cùng một dịch vụ AWS có thể khác nhau giữa các Region. Vì vậy, việc lựa chọn Region phù hợp không chỉ giúp giảm độ trễ mà còn góp phần tối ưu chi phí.
+
+Bên cạnh đó, mình nhận ra rằng một kiến trúc đơn giản với Amazon EC2, Amazon RDS, Amazon S3 và Application Load Balancer đã đủ đáp ứng phần lớn các ứng dụng nhỏ. Chỉ khi hệ thống phát triển và có nhiều người dùng hơn mới cần bổ sung Auto Scaling, CloudFront hay AWS WAF.
+![alt text](image-2.png)
+> **Hình 3. Quy trình tối ưu tài nguyên và chi phí trong suốt vòng đời triển khai hệ thống trên AWS.**
+
+> **Best Practice:** Áp dụng nguyên tắc **Start Simple, Scale Later** và chỉ mở rộng hệ thống khi có nhu cầu thực tế.
+
+---
+
+# Những bài học rút ra
+
+Qua quá trình học và thực hành AWS, mình nhận thấy tối ưu chi phí không đơn thuần là giảm ngân sách mà là sử dụng tài nguyên một cách hợp lý và hiệu quả.
+
+Một số kinh nghiệm mình rút ra gồm:
+
+- Chỉ triển khai các dịch vụ thực sự cần thiết.
+- Tận dụng tối đa AWS Free Tier trong quá trình học tập.
+- Thường xuyên dọn dẹp tài nguyên không còn sử dụng.
+- Theo dõi chi phí bằng AWS Budgets và AWS Cost Explorer.
+- Lựa chọn đúng cấu hình tài nguyên và Region.
+- Thiết kế kiến trúc đơn giản, sau đó mới mở rộng khi hệ thống phát triển.
+
+Những nguyên tắc này cũng chính là nền tảng của trụ cột **Cost Optimization** trong AWS Well-Architected Framework.
+
+---
+
+# Kết luận
+
+Tối ưu chi phí là một kỹ năng quan trọng khi triển khai hệ thống trên AWS. Một kiến trúc tốt không chỉ đảm bảo hiệu năng, bảo mật và khả năng mở rộng mà còn phải sử dụng tài nguyên một cách hợp lý để tránh phát sinh chi phí không cần thiết.
+
+Đối với mình, việc xây dựng thói quen theo dõi chi phí, lựa chọn đúng dịch vụ và quản lý tài nguyên ngay từ đầu đã giúp quá trình học tập và triển khai ứng dụng trên AWS hiệu quả hơn rất nhiều. Hy vọng những kinh nghiệm được chia sẻ trong bài viết sẽ giúp các bạn mới bắt đầu có thêm góc nhìn thực tế để thiết kế hệ thống vừa đáp ứng yêu cầu kỹ thuật, vừa tối ưu ngân sách triển khai.
