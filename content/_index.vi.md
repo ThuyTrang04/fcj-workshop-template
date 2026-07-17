@@ -23,7 +23,7 @@ chapter: false
 | **Lớp** | 22DTHH2 |
 | **Công ty thực tập** | Công ty TNHH Amazon Web Services Vietnam |
 | **Vị trí thực tập** | FCJ Cloud Intern |
-| **Thời gian thực tập** | Từ ngày 17/04/2026 đến ngày 12/07/2026 |
+| **Thời gian thực tập** | Từ ngày 17/04/2026 đến ngày 30/07/2026 |
 
 </div>
 
