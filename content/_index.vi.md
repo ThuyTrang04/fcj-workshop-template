@@ -28,7 +28,7 @@ chapter: false
 </div>
 
 <div style="flex: 0 0 180px; text-align: center; margin-top: 50px;">
-    <img src="/images/thuytrang.jpg" alt="Ảnh đại diện Lê Thị Thùy Trang" style="width: 180px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <img src="{{< relurl "/images/thuytrang.jpg" >}}" alt="Ảnh đại diện Lê Thị Thùy Trang" style="width: 180px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
   </div>
 
 </div>
