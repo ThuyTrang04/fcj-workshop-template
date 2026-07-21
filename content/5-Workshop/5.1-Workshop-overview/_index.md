@@ -1,133 +1,139 @@
 ---
-title : "Giới thiệu"
-date : 2024-01-01 
+title : "Overview"
+date : 2024-01-01
 weight : 1
 chapter : false
 pre : " <b> 5.1. </b> "
 ---
 
+### AWS_OmniStay Project Overview
 
-### Giới thiệu dự án AWS_OmniStay
+The **AWS_OmniStay** project is an online hotel booking web application, similar to a smaller version of Booking.com or Agoda.com. In addition to handling core business functions such as searching for available rooms by location and date, making real-time bookings, and managing transaction history, the main goal of this workshop is to deploy the entire system to the Amazon Web Services (AWS) cloud environment to optimize performance, security, and load-handling capability.
 
-Dự án **AWS_OmniStay** là một ứng dụng web đặt phòng khách sạn trực tuyến (quy mô tương tự mẫu thu nhỏ của Booking.com hoặc Agoda.com). Ngoài việc xử lý các nghiệp vụ cốt lõi như tìm kiếm phòng trống theo địa điểm/ngày đặt, đặt phòng theo thời gian thực và quản lý lịch sử giao dịch, mục tiêu tối thượng của bài thực hành này là triển khai toàn bộ hệ thống lên môi trường Điện toán đám mây Amazon Web Services (AWS) để tối ưu hóa hiệu năng, tính bảo mật và khả năng chịu tải[cite: 11].
+This workshop provides step-by-step guidance for building, configuring, and operating a complete **N-tier architecture** to demonstrate three fundamental characteristics of Cloud Computing:
 
-Bài workshop này sẽ hướng dẫn từng bước xây dựng, cấu hình và vận hành một hạ tầng phân tầng (N-tier Architecture) hoàn chỉnh nhằm chứng minh 3 tính chất nền tảng của Cloud Computing[cite: 11]:
+### Project Links
+
+- **Source code:** [AWS_OmniStay GitHub Repository](https://github.com/minhne198/AWS_OmniStay.git)
+- **Demo video:** [AWS_OmniStay Demo Video Folder](https://drive.google.com/drive/folders/1UG2iVwxWX2OBc7nDoLslqoLCqRZxY5_L?usp=sharing)
+- **Product link:** [AWS_OmniStay Production Website](https://d1gm8xt8e0mar4.cloudfront.net/public/home.html)
 
 ### Workshop Objectives
 
-Workshop này hướng dẫn từng bước triển khai hệ thống **AWS_OmniStay** trên nền tảng Amazon Web Services (AWS), từ khâu chuẩn bị môi trường đến xây dựng hạ tầng, triển khai ứng dụng và đánh giá hiệu năng. Sau khi hoàn thành Workshop, người thực hiện sẽ có thể:
+This workshop guides the step-by-step deployment of the **AWS_OmniStay** system on Amazon Web Services (AWS), from environment preparation to infrastructure setup, application deployment, and performance evaluation. After completing the workshop, the implementer will be able to:
 
-- Chuẩn bị môi trường phát triển và cấu hình tài khoản AWS.
-- Triển khai giao diện Frontend lên **Amazon S3** và phân phối nội dung thông qua **Amazon CloudFront**.
-- Thiết kế và triển khai hạ tầng mạng sử dụng **Amazon VPC**, Public Subnets và Private Subnets.
-- Triển khai ứng dụng **ASP.NET Core (.NET 8)** trên các máy chủ **Amazon EC2**.
-- Xây dựng hệ thống cơ sở dữ liệu **Amazon RDS MySQL Multi-AZ** nhằm đảm bảo tính sẵn sàng cao.
-- Triển khai **Amazon ElastiCache Redis** để tăng tốc độ phản hồi của hệ thống.
-- Cấu hình **Application Load Balancer (ALB)** để phân phối lưu lượng truy cập đến các máy chủ ứng dụng.
-- Thiết lập **Auto Scaling Group (ASG)** nhằm tự động mở rộng hoặc thu hẹp số lượng EC2 dựa trên mức sử dụng CPU.
-- Giám sát tài nguyên bằng **Amazon CloudWatch** và kiểm soát chi phí triển khai bằng **AWS Budget**.
-- Thực hiện kiểm thử chịu tải bằng **Locust** và đánh giá hiệu quả của Redis Cache cũng như Auto Scaling thông qua các chỉ số hiệu năng.
+- Prepare the development environment and configure the AWS account.
+- Deploy the Frontend to **Amazon S3** and distribute content through **Amazon CloudFront**.
+- Design and deploy network infrastructure using **Amazon VPC**, Public Subnets, and Private Subnets.
+- Deploy the **ASP.NET Core (.NET 8)** application on **Amazon EC2** servers.
+- Build an **Amazon RDS MySQL Multi-AZ** database system to ensure high availability.
+- Deploy **Amazon ElastiCache Redis** to improve system response speed.
+- Configure an **Application Load Balancer (ALB)** to distribute traffic to application servers.
+- Set up an **Auto Scaling Group (ASG)** to automatically scale EC2 instances in or out based on CPU usage.
+- Monitor resources with **Amazon CloudWatch** and control deployment costs using **AWS Budget**.
+- Perform load testing with **Locust** and evaluate the effectiveness of Redis Cache and Auto Scaling through performance metrics.
+
 ### Workshop Scope
 
-Workshop tập trung triển khai và đánh giá các dịch vụ cốt lõi của AWS phục vụ cho hệ thống đặt phòng khách sạn trực tuyến AWS_OmniStay. Phạm vi triển khai bao gồm:
+The workshop focuses on deploying and evaluating core AWS services used by the AWS_OmniStay online hotel booking system. The deployment scope includes:
 
-| Thành phần | Mục đích |
+| Component | Purpose |
 | :--- | :--- |
-| Amazon S3 | Lưu trữ mã nguồn Frontend dưới dạng Static Website. |
-| Amazon CloudFront | Phân phối nội dung tĩnh thông qua mạng lưới CDN. |
-| Origin Access Control (OAC) | Bảo vệ S3 Bucket, chỉ cho phép CloudFront truy cập. |
-| Amazon VPC | Xây dựng môi trường mạng riêng biệt cho hệ thống. |
-| Amazon EC2 | Chạy ứng dụng Backend ASP.NET Core Web API. |
-| Application Load Balancer | Cân bằng tải giữa nhiều EC2 Instance. |
-| Auto Scaling Group | Tự động mở rộng hoặc thu hẹp số lượng EC2 theo tải hệ thống. |
-| Amazon RDS MySQL | Lưu trữ dữ liệu nghiệp vụ của hệ thống. |
-| Amazon ElastiCache Redis | Lưu trữ dữ liệu đệm nhằm tăng tốc độ phản hồi. |
-| Amazon CloudWatch | Theo dõi hiệu năng và thiết lập cảnh báo. |
-| AWS Budget | Giám sát và kiểm soát chi phí sử dụng dịch vụ AWS. |
-| Locust | Mô phỏng người dùng đồng thời để kiểm thử khả năng chịu tải của hệ thống. |
+| Amazon S3 | Stores the Frontend source code as a static website. |
+| Amazon CloudFront | Distributes static content through a CDN network. |
+| Origin Access Control (OAC) | Protects the S3 bucket and only allows CloudFront to access it. |
+| Amazon VPC | Builds an isolated network environment for the system. |
+| Amazon EC2 | Runs the ASP.NET Core Web API Backend. |
+| Application Load Balancer | Balances traffic across multiple EC2 instances. |
+| Auto Scaling Group | Automatically scales the number of EC2 instances based on system load. |
+| Amazon RDS MySQL | Stores the system's business data. |
+| Amazon ElastiCache Redis | Stores cached data to improve response speed. |
+| Amazon CloudWatch | Monitors performance and configures alerts. |
+| AWS Budget | Monitors and controls AWS service usage costs. |
+| Locust | Simulates concurrent users to test system load-handling capacity. |
 
-1. **Tính Sẵn sàng cao (High Availability - HA):** Hệ thống được phân bổ trên nhiều Vùng sẵn sàng (Availability Zones - AZs) để đảm bảo không có điểm lỗi đơn lẻ (Single Point of Failure). Website vẫn hoạt động bình thường ngay cả khi một trung tâm dữ liệu gặp sự cố vật lý[cite: 11].
-2. **Tính Tự động co giãn (Auto Scaling):** Hạ tầng máy chủ tính toán tự động co giãn số lượng instance dựa trên nhu cầu sử dụng thực tế của khách hàng (Scale-out khi tải cao và Scale-in khi thấp để tối ưu chi phí)[cite: 11].
-3. **Cơ chế Caching dữ liệu:** Tối ưu hóa tốc độ phản hồi thông qua tầng lưu trữ đệm bộ nhớ đệm, giảm thiểu gánh nặng truy vấn trực tiếp vào Cơ sở dữ liệu quan hệ cho các yêu cầu lặp đi lặp lại[cite: 11].
+1. **High Availability (HA):** The system is distributed across multiple Availability Zones (AZs) to avoid a single point of failure. The website can continue operating even if one data center has a physical issue.
+2. **Auto Scaling:** The compute infrastructure automatically adjusts the number of instances based on real user demand, scaling out under high load and scaling in under low load to optimize costs.
+3. **Data Caching Mechanism:** Response speed is optimized through an in-memory cache layer, reducing direct queries to the relational database for repeated requests.
 
 ---
+
 ### Expected System Objectives
 
-Ngoài việc triển khai thành công các dịch vụ AWS, Workshop còn hướng tới việc đánh giá hiệu quả của kiến trúc thông qua các mục tiêu định lượng sau:
+In addition to successfully deploying AWS services, the workshop also evaluates the effectiveness of the architecture through the following measurable goals:
 
-- Đảm bảo hệ thống luôn sẵn sàng phục vụ khi một Availability Zone gặp sự cố bằng cách triển khai các thành phần dự phòng.
-- Tự động mở rộng số lượng EC2 Instance khi **CPU Utilization vượt quá 70%** và tự động thu hẹp khi tải giảm nhằm tối ưu chi phí vận hành.
-- Giảm thời gian phản hồi của các truy vấn phổ biến từ khoảng **150 ms (Cache MISS)** xuống còn khoảng **4–5 ms (Cache HIT)** nhờ sử dụng Amazon ElastiCache Redis.
-- Phân phối nội dung tĩnh thông qua Amazon CloudFront để giảm độ trễ truy cập và tăng tốc độ tải trang cho người dùng.
-- Theo dõi và kiểm soát chi phí sử dụng AWS bằng AWS Budget với ngưỡng cảnh báo **10 USD** trong suốt quá trình triển khai Workshop.
- 
-### Sơ đồ kiến trúc tổng thể (Architecture Diagram)
+- Ensure the system remains available when one Availability Zone has an issue by deploying redundant components.
+- Automatically scale out EC2 instances when **CPU Utilization exceeds 70%** and scale in when the load decreases to optimize operating costs.
+- Reduce response time for common queries from approximately **150 ms (Cache MISS)** to about **4-5 ms (Cache HIT)** by using Amazon ElastiCache Redis.
+- Distribute static content through Amazon CloudFront to reduce access latency and improve page loading speed for users.
+- Monitor and control AWS usage costs using AWS Budget with a **10 USD** alert threshold throughout the workshop deployment.
 
-Hệ thống được thiết kế theo đúng quy chuẩn kiến trúc Cloud tốt nhất (AWS Well-Architected Framework), chia tách rõ ràng giữa môi trường Public tiếp nhận lưu lượng và môi trường Private cô lập hoàn toàn cho ứng dụng cũng như dữ liệu[cite: 11].
+### Overall Architecture Diagram
 
+The system is designed according to cloud architecture best practices from the AWS Well-Architected Framework, with a clear separation between the Public environment that receives traffic and the fully isolated Private environment for the application and data layers.
 
 ![AWS OmniStay Infrastructure Architecture](/images/aws-omnistay-architecture.png)
 
 ### Architecture Request Flow
 
-Luồng xử lý yêu cầu của hệ thống được mô tả như sau:
+The system request flow is described as follows:
 
 ```text
                 User
-                  │
-                  ▼
+                  |
+                  v
           Amazon CloudFront
-                  │
+                  |
         (Static Content Request)
-                  │
-                  ▼
+                  |
+                  v
          Amazon S3 Private Bucket
-                  │
-                  │
+                  |
+                  |
         (API Request: /api/*)
-                  ▼
+                  v
      Application Load Balancer (ALB)
-                  │
-                  ▼
+                  |
+                  v
       Auto Scaling Group (EC2)
-                  │
+                  |
         ASP.NET Core Web API
-          │                 │
-          ▼                 ▼
+          |                 |
+          v                 v
  Amazon ElastiCache     Amazon RDS
        Redis             MySQL Multi-AZ
 ```
 
-Trong kiến trúc trên, các tệp tĩnh như HTML, CSS và JavaScript được lưu trữ trong Amazon S3 và chỉ được truy cập thông qua Amazon CloudFront bằng cơ chế Origin Access Control (OAC). Đối với các yêu cầu API, Application Load Balancer sẽ phân phối lưu lượng đến các EC2 trong Auto Scaling Group. Backend ưu tiên truy vấn Redis trước để giảm thời gian phản hồi; nếu dữ liệu chưa tồn tại trong bộ nhớ đệm, hệ thống sẽ truy vấn xuống Amazon RDS MySQL và đồng thời cập nhật lại Redis cho các lần truy cập tiếp theo.
+In this architecture, static files such as HTML, CSS, and JavaScript are stored in Amazon S3 and can only be accessed through Amazon CloudFront using Origin Access Control (OAC). For API requests, the Application Load Balancer distributes traffic to EC2 instances in the Auto Scaling Group. The backend checks Redis first to reduce response time. If the data is not available in the cache, the system queries Amazon RDS MySQL and then updates Redis for future requests.
 
-#### Giải thích luồng hoạt động của request:
+#### Request Flow Explanation
 
-* **Tầng phân phối nội dung tĩnh (Frontend Static Assets Distributed):** Người dùng truy cập trang web thông qua dịch vụ phân giải tên miền **Amazon Route 53** nối tới CDN **Amazon CloudFront**[cite: 11]. Toàn bộ giao diện HTML, CSS, và JavaScript tĩnh được lưu trữ an toàn trong **Amazon S3 Private Bucket** và chỉ cho phép CloudFront tiếp cận qua cơ chế **Origin Access Control (OAC)**[cite: 11]. Hệ thống được bảo vệ vòng ngoài bằng **AWS WAF** nhằm ngăn chặn các cuộc tấn công DDoS, SQL Injection và XSS[cite: 11].
-* **Tầng xử lý logic ứng dụng (API Backend Layer):** Mọi request API (đường dẫn `/api/*`) gửi từ trình duyệt sẽ được CloudFront điều hướng tới cổng dịch vụ của **Application Load Balancer (ALB)** nằm tại Public Subnets[cite: 11]. ALB thực hiện kiểm tra sức khỏe (Health Check) liên tục và phân phối đều lưu lượng đến các máy chủ ảo **Amazon EC2** chạy ứng dụng ASP.NET Core Web API thông qua cổng giao tiếp `8080` phía trong Private App Subnets[cite: 11].
-* **Tầng cơ sở dữ liệu và bộ nhớ đệm (Database & Cache Layer):** Khi khách hàng thực hiện tìm kiếm phòng trống, ứng dụng .NET sẽ kiểm tra bộ nhớ đệm **Amazon ElastiCache Redis** trước[cite: 11]. Nếu dữ liệu đã tồn tại (Cache HIT), kết quả được trả về ngay lập tức với độ trễ cực thấp (< 5ms)[cite: 11]. Nếu chưa có dữ liệu (Cache MISS), hệ thống mới thực hiện truy vấn xuống hệ quản trị cơ sở dữ liệu **Amazon RDS MySQL** (Cấu hình Multi-AZ Primary + Standby để dự phòng thảm họa)[cite: 11].
+* **Static content distribution layer (Frontend static assets):** Users access the website through **Amazon Route 53**, which resolves the domain name to the **Amazon CloudFront** CDN. The entire static HTML, CSS, and JavaScript interface is securely stored in an **Amazon S3 Private Bucket** and can only be accessed by CloudFront through **Origin Access Control (OAC)**. The outer layer is protected by **AWS WAF** to help prevent DDoS, SQL Injection, and XSS attacks.
+* **Application logic layer (API Backend Layer):** All API requests from the browser using the `/api/*` path are routed by CloudFront to the **Application Load Balancer (ALB)** in the Public Subnets. The ALB continuously performs health checks and evenly distributes traffic to **Amazon EC2** virtual servers running the ASP.NET Core Web API through port `8080` inside the Private App Subnets.
+* **Database and cache layer:** When a customer searches for available rooms, the .NET application checks **Amazon ElastiCache Redis** first. If the data already exists (Cache HIT), the result is returned immediately with very low latency (< 5 ms). If the data does not exist (Cache MISS), the system queries **Amazon RDS MySQL**, which is configured as Multi-AZ Primary + Standby for disaster recovery.
 
 ---
 
-### Ngăn xếp Công nghệ (Tech Stack) Sử dụng
+### Technology Stack Used
 
-| Tầng chức năng | Công nghệ / Dịch vụ áp dụng | Vai trò chi tiết trong Workshop |
+| Functional layer | Technology / Service used | Detailed role in the Workshop |
 | :--- | :--- | :--- |
-| **Client / Frontend** | HTML5, CSS3, Bootstrap 5.3, Vanilla JavaScript[cite: 11] | Xây dựng giao diện responsive kết nối bất đồng bộ gọi API bằng Fetch/Axios[cite: 11]. |
-| **API / Backend** | ASP.NET Core (.NET 8 LTS), Entity Framework Core[cite: 11] | Xử lý logic nghiệp vụ, xác thực JWT, thực thi Transaction ngăn chặn Overbooking[cite: 11]. |
-| **Compute / Routing** | Amazon EC2, Application Load Balancer, Route 53[cite: 11] | Cung cấp tài nguyên tính toán và cân bằng tải phân phối traffic cho Web API[cite: 11]. |
-| **Storage / CDN** | Amazon S3, Amazon CloudFront[cite: 11] | Lưu trữ mã nguồn frontend riêng tư, tăng tốc tải trang qua mạng lưới Edge Location[cite: 11]. |
-| **Database / Cache** | Amazon RDS MySQL 8.0, ElastiCache Redis[cite: 11] | Lưu trữ dữ liệu nghiệp vụ lâu dài và xử lý lớp đệm tăng tốc độ tìm kiếm[cite: 11]. |
-| **Operations / Security**| Amazon CloudWatch, CloudWatch Alarms, AWS Budget, IAM[cite: 11] | Giám sát tài nguyên, thiết lập cảnh báo vượt chi phí và phân quyền bảo mật cho EC2[cite: 11]. |
-| **Load Testing** | Locust (Python Framework)[cite: 11] | Công cụ giả lập hàng trăm user truy cập đồng thời để kiểm tra khả năng Auto Scaling[cite: 11]. |
+| **Client / Frontend** | HTML5, CSS3, Bootstrap 5.3, Vanilla JavaScript | Builds a responsive interface that asynchronously calls APIs using Fetch/Axios. |
+| **API / Backend** | ASP.NET Core (.NET 8 LTS), Entity Framework Core | Handles business logic, JWT authentication, and transactions that prevent overbooking. |
+| **Compute / Routing** | Amazon EC2, Application Load Balancer, Route 53 | Provides compute resources and load balancing for Web API traffic. |
+| **Storage / CDN** | Amazon S3, Amazon CloudFront | Stores private frontend source code and accelerates page loading through Edge Locations. |
+| **Database / Cache** | Amazon RDS MySQL 8.0, ElastiCache Redis | Stores long-term business data and provides a cache layer to accelerate searches. |
+| **Operations / Security** | Amazon CloudWatch, CloudWatch Alarms, AWS Budget, IAM | Monitors resources, sets cost alerts, and manages secure permissions for EC2. |
+| **Load Testing** | Locust (Python Framework) | Simulates hundreds of concurrent users to test Auto Scaling capability. |
 
 ### Expected Outcome
 
-Sau khi hoàn thành toàn bộ Workshop, người thực hiện sẽ xây dựng thành công một hệ thống đặt phòng khách sạn trực tuyến có khả năng triển khai trên nền tảng Amazon Web Services với các đặc điểm sau:
+After completing the full workshop, the implementer will successfully build an online hotel booking system that can be deployed on Amazon Web Services with the following characteristics:
 
-- Frontend được lưu trữ trên Amazon S3 và phân phối thông qua Amazon CloudFront.
-- Backend ASP.NET Core hoạt động ổn định phía sau Application Load Balancer.
-- Hệ thống có khả năng tự động mở rộng bằng Auto Scaling Group dựa trên mức sử dụng CPU.
-- Cơ sở dữ liệu Amazon RDS MySQL được triển khai theo mô hình Multi-AZ nhằm nâng cao tính sẵn sàng.
-- Amazon ElastiCache Redis giúp giảm đáng kể thời gian phản hồi của các truy vấn phổ biến.
-- Toàn bộ hệ thống được giám sát bằng Amazon CloudWatch và kiểm soát chi phí bằng AWS Budget.
-- Kết quả kiểm thử chịu tải bằng Locust cho thấy hệ thống đáp ứng tốt khi có nhiều người dùng truy cập đồng thời, đồng thời chứng minh hiệu quả của cơ chế Redis Cache và Auto Scaling trong việc cải thiện hiệu năng cũng như khả năng mở rộng của ứng dụng.
+- The Frontend is hosted on Amazon S3 and distributed through Amazon CloudFront.
+- The ASP.NET Core Backend runs stably behind the Application Load Balancer.
+- The system can automatically scale using an Auto Scaling Group based on CPU usage.
+- The Amazon RDS MySQL database is deployed in a Multi-AZ model to improve availability.
+- Amazon ElastiCache Redis significantly reduces response time for common queries.
+- The entire system is monitored with Amazon CloudWatch and cost-controlled with AWS Budget.
+- Locust load testing results show that the system can respond well when many users access it concurrently, while also demonstrating the effectiveness of Redis Cache and Auto Scaling in improving performance and application scalability.

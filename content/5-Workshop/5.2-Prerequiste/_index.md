@@ -1,32 +1,33 @@
-﻿---
-title : "Chuẩn bị trước khi triển khai"
+---
+title : "Preparation Before Deployment"
 date : 2024-01-01
 weight : 2
 chapter : false
 pre : " <b> 5.2. </b> "
 ---
 
-## Mục tiêu
+## Objective
 
-Trước khi tạo tài nguyên AWS, cần chuẩn bị môi trường làm việc, quy ước đặt tên, ngân sách, source code và danh sách thông tin sẽ dùng xuyên suốt quá trình triển khai. Bước chuẩn bị giúp hạn chế sai sót khi cấu hình nhiều dịch vụ có liên kết với nhau như VPC, EC2, RDS, Redis, S3, CloudFront và CloudWatch.
+Before creating AWS resources, it is necessary to prepare the working environment, naming conventions, budget, source code, and the list of values that will be used throughout the deployment process. This preparation step helps reduce mistakes when configuring multiple connected services such as VPC, EC2, RDS, Redis, S3, CloudFront, and CloudWatch.
 
-## Phạm vi chuẩn bị
+## Preparation Scope
 
-Các nội dung cần hoàn thành trong bước này gồm:
+The following items need to be completed in this step:
 
-- Xác định region triển khai và quy ước đặt tên tài nguyên.
-- Kiểm tra source code AWS_OmniStay ở local.
-- Chuẩn bị các công cụ phục vụ build, deploy và kiểm thử.
-- Tạo AWS Budget để kiểm soát chi phí trong quá trình làm workshop.
-- Xác định nguyên tắc bảo mật khi ghi lại tài liệu, đặc biệt là không đưa password, secret key hoặc token vào báo cáo.
+- Identify the deployment Region and resource naming convention.
+- Check the AWS_OmniStay source code locally.
+- Prepare tools for build, deployment, and testing.
+- Create an AWS Budget to control costs during the workshop.
+- Define documentation security principles, especially avoiding passwords, secret keys, or tokens in the report.
 
-> **Ảnh cần dán:** Cấu trúc thư mục source AWS_OmniStay trên máy local hoặc trong VS Code.
+![VPC details](/images/cautrucOmniStay.jpg)
+<p align="center"><em>Figure 5.2.1: OmniStay folder structure.</em></p>
 
-## 1. Xác định region và quy ước đặt tên
+## 1. Define Region and Naming Convention
 
-Workshop sử dụng region `ap-southeast-1` để triển khai các tài nguyên chính. Các tài nguyên được đặt tên theo tiền tố `omnistay` để dễ nhận diện và dễ lọc khi kiểm tra chi phí.
+The workshop uses the `ap-southeast-1` Region to deploy the main resources. Resources are named with the `omnistay` prefix so they are easy to identify and filter when checking costs.
 
-| Nhóm tài nguyên | Tên sử dụng trong workshop |
+| Resource group | Name used in the workshop |
 | --- | --- |
 | VPC | `omnistay-vpc` |
 | Public subnet | `omnistay-public-a`, `omnistay-public-b` |
@@ -40,49 +41,49 @@ Workshop sử dụng region `ap-southeast-1` để triển khai các tài nguyê
 | Frontend bucket | `omnistay-frontend-<account-id>` |
 | Artifact bucket | `omnistay-artifacts-<account-id>` |
 
-Các tag nên dùng cho tài nguyên:
+Recommended tags for resources:
 
 | Key | Value |
 | --- | --- |
 | `Project` | `AWS_OmniStay` |
 | `Environment` | `demo` |
-| `Owner` | Tên hoặc mã sinh viên thực hiện |
+| `Owner` | Name or student ID of the implementer |
 
-> **Ảnh cần dán:** Màn hình AWS Console đang chọn region `ap-southeast-1` và ví dụ tag của một tài nguyên đã tạo.
+![VPC details](/images/522.jpg)
+<p align="center"><em>Figure 5.2.2: AWS Console screen with the `ap-southeast-1` Region selected.</em></p>
 
-## 2. Tạo AWS Budget để kiểm soát chi phí
+## 2. Create an AWS Budget to Control Costs
 
-Một số dịch vụ như NAT Gateway, ALB, RDS, ElastiCache, WAF và public IPv4 có thể phát sinh chi phí theo giờ. Vì vậy cần tạo budget trước khi triển khai.
+Some services such as NAT Gateway, ALB, RDS, ElastiCache, WAF, and public IPv4 can generate hourly charges. Therefore, a budget should be created before deployment.
 
-Thực hiện:
+Steps:
 
-1. Vào **Billing and Cost Management**.
-2. Chọn **Budgets**.
-3. Chọn **Create budget**.
-4. Chọn loại **Monthly cost budget**.
-5. Đặt tên budget là `omnistay-monthly-budget`.
-6. Đặt ngân sách demo là `10 USD`.
-7. Cấu hình cảnh báo ở các ngưỡng 50%, 80% và 100%.
-8. Nhập email nhận cảnh báo và tạo budget.
+1. Go to **Billing and Cost Management**.
+2. Select **Budgets**.
+3. Select **Create budget**.
+4. Choose **Monthly cost budget**.
+5. Set the budget name to `omnistay-monthly-budget`.
+6. Set the demo budget to `10 USD`.
+7. Configure alerts at the 50%, 80%, and 100% thresholds.
+8. Enter the email address that will receive alerts and create the budget.
 
-> **Ảnh cần dán:** Trang Budget summary sau khi tạo xong.
->
-> **Ảnh cần dán:** Phần alert thresholds và email recipient.
+![VPC details](/images/523.jpg)
+<p align="center"><em>Figure 5.2.3: Creating a Budget.</em></p>
 
-## 3. Chuẩn bị công cụ triển khai
+## 3. Prepare Deployment Tools
 
-Các công cụ cần có trên máy local:
+Tools required on the local machine:
 
-| Công cụ | Mục đích |
+| Tool | Purpose |
 | --- | --- |
-| .NET SDK | Build và publish ASP.NET Core Web API |
-| Git | Quản lý source code |
-| AWS CLI | Upload artifact, kiểm tra tài nguyên và hỗ trợ deploy |
-| Visual Studio Code | Chỉnh sửa source và tài liệu |
-| DBeaver hoặc MySQL client | Kiểm tra dữ liệu trong RDS MySQL |
-| Trình duyệt | Kiểm thử website public qua CloudFront |
+| .NET SDK | Build and publish the ASP.NET Core Web API |
+| Git | Manage source code |
+| AWS CLI | Upload artifacts, check resources, and support deployment |
+| Visual Studio Code | Edit source code and documents |
+| DBeaver or MySQL client | Check data in RDS MySQL |
+| Browser | Test the public website through CloudFront |
 
-Kiểm tra source code chính:
+Check the main source code:
 
 ```text
 backend/src/HotelBooking.Api
@@ -90,40 +91,39 @@ frontend/public
 frontend/src
 ```
 
-Backend là ASP.NET Core Web API. Frontend là static web gồm HTML, CSS và JavaScript. Khi triển khai production, frontend đọc cấu hình API từ `frontend/public/config.js`.
+The backend is an ASP.NET Core Web API. The frontend is a static website built with HTML, CSS, and JavaScript. In production deployment, the frontend reads the API configuration from `frontend/public/config.js`.
 
-> **Ảnh cần dán:** Màn hình terminal hoặc VS Code hiển thị các thư mục `backend`, `frontend`, `docs` của dự án.
+![VPC details](/images/524.jpg)
+<p align="center"><em>Figure 5.2.4: The project's `backend`, `frontend`, and `docs` folders.</em></p>
 
-## 4. Nguyên tắc bảo mật khi ghi tài liệu
+## 4. Security Principles When Writing Documentation
 
-Trong quá trình triển khai, không ghi trực tiếp các thông tin sau vào báo cáo:
+During deployment, do not write the following information directly in the report:
 
-- AWS access key hoặc secret access key.
+- AWS access key or secret access key.
 - RDS password.
 - JWT secret.
-- Admin password production.
-- Token thanh toán hoặc webhook secret.
-- Nội dung secret value trong Secrets Manager.
+- Production admin password.
+- Payment token or webhook secret.
+- Secret values stored in Secrets Manager.
 
-Các giá trị nhạy cảm chỉ nên lưu ở ghi chú riêng ngoài repo hoặc trong Secrets Manager/Parameter Store. Trong báo cáo, sử dụng placeholder như `<database-password>`, `<jwt-secret>`, `<cloudfront-domain>`.
+Sensitive values should only be stored in separate private notes outside the repository or in Secrets Manager/Parameter Store. In the report, use placeholders such as `<database-password>`, `<jwt-secret>`, and `<cloudfront-domain>`.
 
-## 5. Danh sách giá trị cần ghi lại
+## 5. List of Values to Record
 
-Trong quá trình triển khai, cần ghi lại các giá trị sau để dùng ở các bước sau:
+During deployment, record the following values for later steps:
 
-| Giá trị | Mục đích sử dụng |
+| Value | Usage purpose |
 | --- | --- |
-| `ARTIFACT_BUCKET` | Nơi upload file backend publish `.zip` |
-| `FRONTEND_BUCKET` | Nơi upload frontend static files |
-| `RDS_ENDPOINT` | Kết nối backend đến MySQL |
-| `REDIS_ENDPOINT` | Kết nối backend đến Redis/Valkey |
-| `ALB_DNS` | Test backend qua Load Balancer |
-| `CLOUDFRONT_DOMAIN` | Truy cập website public |
-| `TARGET_GROUP_NAME` | Kiểm tra health check backend |
-| `ASG_NAME` | Quản lý số lượng EC2 backend |
+| `ARTIFACT_BUCKET` | Location for uploading the backend publish `.zip` file |
+| `FRONTEND_BUCKET` | Location for uploading frontend static files |
+| `RDS_ENDPOINT` | Backend connection to MySQL |
+| `REDIS_ENDPOINT` | Backend connection to Redis/Valkey |
+| `ALB_DNS` | Testing the backend through the Load Balancer |
+| `CLOUDFRONT_DOMAIN` | Accessing the public website |
+| `TARGET_GROUP_NAME` | Checking backend health checks |
+| `ASG_NAME` | Managing the number of backend EC2 instances |
 
-> **Ảnh cần dán:** Bảng ghi chú các giá trị triển khai, đã che hoặc thay thế toàn bộ thông tin nhạy cảm.
+## Expected Result
 
-## Kết quả cần đạt
-
-Sau bước chuẩn bị, người thực hiện có đủ công cụ local, biết region triển khai, có budget kiểm soát chi phí và có quy ước đặt tên rõ ràng. Các bước tiếp theo sẽ bắt đầu từ việc xây dựng hạ tầng mạng nền tảng cho hệ thống.
+After this preparation step, the implementer has the required local tools, knows the deployment Region, has a budget for cost control, and has a clear naming convention. The next steps will start with building the foundational network infrastructure for the system.

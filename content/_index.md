@@ -5,40 +5,46 @@ weight: 1
 chapter: false
 ---
 
-    
 # Internship Report
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy verbatim** for your report, including this warning.
-{{% /notice %}}
+<div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
 
-### Student Information:
-&emsp; **Full Name:** Nguyen Van A
+<div style="flex: 1; min-width: 300px;">
 
-&emsp; **Phone Number:** 0989888999 
+### Student Information
 
-&emsp; **Email:** Anguyenvan@gmail.com
+| Field | Details |
+| :--- | :--- |
+| **Full name** | Le Thi Thuy Trang |
+| **Phone number** | 0367052710 |
+| **Email** | lethuytrang200404@gmail.com |
+| **University** | Ho Chi Minh City University of Technology (HUTECH) |
+| **Major** | Information Technology |
+| **Class** | 22DTHH2 |
+| **Internship company** | Amazon Web Services Vietnam Co., Ltd. |
+| **Internship position** | FCJ Cloud Intern |
+| **Internship duration** | From 17/04/2026 to 30/07/2026 |
 
-&emsp; **University:** Ho Chi Minh City University of Technology and Education
+</div>
 
-&emsp; **Major:** Information Technology
+<div style="flex: 0 0 180px; text-align: center; margin-top: 50px;">
+    <img src="/images/thuytrang.jpg" alt="Profile picture of Le Thi Thuy Trang" style="width: 180px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+  </div>
 
-&emsp; **Class:** AWS082025
+</div>
 
-&emsp; **Internship Company:** Amazon Web Services Vietnam Co., Ltd.
+</div>
 
-&emsp; **Internship Position:** FCJ Cloud Intern
+---
 
-&emsp; **Internship Duration:** From 12/08/2025 to 12/11/2025
+## Report Content
 
-![Your profile picture](/images/avatar.png)
-
-### Report Content
-
-1.  [Worklog](1-Worklog/)
-2.  [Proposal](2-Proposal/)
-3.  [Translated Blogs](3-BlogsTranslated/)
-4.  [Events Participated](4-EventParticipated/)
-5.  [Workshop](5-Workshop/)
-6.  [Self-evaluation](6-Self-evaluation/)
-7.  [Sharing and Feedback](7-Feedback/)
+| No. | Report section | Details |
+| :---: | :--- | :--- |
+| 01 | **Worklog** | [View Worklog details](1-Worklog/) |
+| 02 | **Project Proposal** | [View Proposal details](2-Proposal/) |
+| 03 | **Translated Blogs** | [View translated blog list](3-BlogsTranslated/) |
+| 04 | **Events Attended** | [View event list](4-EventParticipated/) |
+| 05 | **Hands-on Workshop** | [View Workshop content](5-Workshop/) |
+| 06 | **Self-evaluation Results** | [View Self-evaluation](6-Self-evaluation/) |
+| 07 | **Feedback and Contributions** | [View Feedback section](7-Feedback/) |

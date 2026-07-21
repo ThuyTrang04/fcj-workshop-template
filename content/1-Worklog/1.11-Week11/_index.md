@@ -5,53 +5,64 @@ weight: 2
 chapter: false
 pre: " <b> 1.11. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 11 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Learn **Data Lake** architecture on AWS and the role of Amazon S3 in centralized data storage.
+* Master data management and processing with **AWS Glue**, including Data Catalog, Crawler, and ETL Job.
+* Practice querying data with **Amazon Athena** and visualizing data with **Amazon QuickSight**.
+* Build an analytics system following the **Serverless Data Analytics** model on AWS.
+* Improve skills in deploying, administering, and optimizing data systems for enterprise analytics and reporting needs.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to complete this week:
 
+| Day | Task | Start date | Completion date | Reference |
+|------|------|------------|----------------|-----------|
+| 2 | - Learn the overview of **Data Lake architecture on AWS (Lab 000040)**. <br> - Study the role of Amazon S3 in centralized data storage and Data Lake scalability. | 22/06/2026 | 22/06/2026 | Lab 000040 |
+| 3 | - Create and configure **AWS Glue Database**. <br> - Learn metadata management with Glue Data Catalog. <br> - Create Glue Crawler to automatically discover data structure. | 23/06/2026 | 23/06/2026 | Lab 000040 |
+| 4 | - Query data with **Amazon Athena**. <br> - Evaluate the ability to analyze data directly on Amazon S3 without a separate database management system. | 24/06/2026 | 24/06/2026 | Lab 000040 |
+| 5 | - Learn the **ETL workflow with AWS Glue (Lab 000060)**. <br> - Create and run Glue Job to clean, transform, and process data. <br> - Evaluate automated data processing capabilities on AWS. | 25/06/2026 | 25/06/2026 | Lab 000060 |
+| 6 | - Monitor and test ETL results. <br> - Manage output data on Amazon S3. <br> - Evaluate the effectiveness of AWS Glue in large-scale data processing. | 26/06/2026 | 26/06/2026 | Lab 000060 |
+| 7 | - Practice **Amazon QuickSight (Lab 000070)**. <br> - Connect QuickSight to Athena to create a Dataset. <br> - Build charts, dashboards, and visual reports for data analysis. | 27/06/2026 | 27/06/2026 | Lab 000070 |
+| Sun | - Collect lab screenshots and review S3, Glue, Athena, and QuickSight configurations. <br> - Complete the week 11 report. <br> - Summarize knowledge of Data Lake, ETL, and Data Visualization on AWS. | 28/06/2026 | 28/06/2026 | AWS Study Group & Personal |
 
-### Week 11 Achievements:
+### Results achieved in week 11:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+#### Data Lake and Data Management:
 
-* Successfully created and configured an AWS Free Tier account.
+* Understood **Data Lake** architecture and how to deploy centralized data storage on AWS.
+* Understood the role of **Amazon S3** in storing structured and unstructured data.
+* Learned metadata management through **AWS Glue Data Catalog**.
+* Successfully practiced using **Glue Crawler** to automatically discover and catalog data.
 
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
+#### ETL and Data Processing:
 
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
+* Learned and implemented the **ETL (Extract - Transform - Load)** process with AWS Glue.
+* Created and ran **AWS Glue Job** to process and transform data.
+* Understood how to automate data processing in the cloud.
+* Evaluated the benefits of serverless services for large-scale data processing.
 
-* Used AWS CLI to perform basic operations such as:
+#### Data Analytics:
 
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
+* Queried data with **Amazon Athena** directly on data stored in Amazon S3.
+* Understood the serverless analytics model.
+* Evaluated Athena performance and scalability in large data systems.
+* Understood the data extraction workflow for business reporting and analysis.
 
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+#### Data Visualization:
+
+* Connected **Amazon QuickSight** successfully to an Athena data source.
+* Built charts and dashboards for data analysis.
+* Visualized data from different perspectives to support decision making.
+* Understood the role of Business Intelligence in modern data systems.
+
+#### AWS Data System Optimization:
+
+* Understood how to combine Amazon S3, AWS Glue, Athena, and QuickSight to build a complete analytics system.
+* Learned the end-to-end workflow from storage, processing, querying, to visualization on AWS.
+* Evaluated scalability, flexibility, and cost optimization of the Serverless Data Analytics model.
+* Improved skills in deploying and administering data systems on AWS Cloud.
+* **Module 07-Lab40 - Preparing the database**
+ ![alt text](image.png)
+* **Module 07-Lab60-1 - CloudShell.2.2**
+ ![alt text](image-1.png)

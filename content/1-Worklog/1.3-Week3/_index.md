@@ -1,57 +1,72 @@
 ---
 title: "Week 3 Worklog"
-date: 2024-01-01
+date: 2026-04-25
 weight: 1
 chapter: false
 pre: " <b> 1.3. </b> "
 ---
-{{% notice warning %}} 
-⚠️ **Note:** The following information is for reference purposes only. Please **do not copy verbatim** for your own report, including this warning.
-{{% /notice %}}
-
 
 ### Week 3 Objectives:
 
-* Connect and get acquainted with members of First Cloud Journey.
-* Understand basic AWS services, how to use the console & CLI.
+* Understand the concept of **Amazon VPC** and how to set up an isolated virtual network environment.
+* Become proficient in IP management, subnet planning, and route table configuration.
+* Deploy network security layers: **Security Groups** and **Network ACLs**.
+* Learn internet connectivity and hybrid infrastructure options such as Internet Gateway, NAT Gateway, and VPN.
+* Study advanced solutions such as VPC Peering and Elastic Load Balancing (ELB).
+* Deploy network components including **Subnet**, **Internet Gateway**, and **Route Table**.
+* Manage **EC2** servers securely through **NAT Gateway** and **Instance Connect Endpoint**.
 
-### Tasks to be carried out this week:
-| Day | Task                                                                                                                                                                                                   | Start Date | Completion Date | Reference Material                        |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ----------------------------------------- |
-| 2   | - Get acquainted with FCJ members <br> - Read and take note of internship unit rules and regulations                                                                                                   | 08/11/2025 | 08/11/2025      |
-| 3   | - Learn about AWS and its types of services <br>&emsp; + Compute <br>&emsp; + Storage <br>&emsp; + Networking <br>&emsp; + Database <br>&emsp; + ... <br>                                              | 08/12/2025 | 08/12/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 4   | - Create AWS Free Tier account <br> - Learn about AWS Console & AWS CLI <br> - **Practice:** <br>&emsp; + Create AWS account <br>&emsp; + Install & configure AWS CLI <br> &emsp; + How to use AWS CLI | 08/13/2025 | 08/13/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 5   | - Learn basic EC2: <br>&emsp; + Instance types <br>&emsp; + AMI <br>&emsp; + EBS <br>&emsp; + ... <br> - SSH connection methods to EC2 <br> - Learn about Elastic IP   <br>                            | 08/14/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
-| 6   | - **Practice:** <br>&emsp; + Launch an EC2 instance <br>&emsp; + Connect via SSH <br>&emsp; + Attach an EBS volume                                                                                     | 08/15/2025 | 08/15/2025      | <https://cloudjourney.awsstudygroup.com/> |
+### Tasks to complete this week:
 
+| Day | Task | Start date | Completion date | Reference |
+| --- | ---- | ---------- | --------------- | --------- |
+| 2 | - Learn the VPC overview, IP address ranges (CIDR), and subnet segmentation. <br> - Configure route tables for internal traffic. | 27/04/2026 | 27/04/2026 | AWS Networking Guide |
+| 3 | - Set up internet connectivity through an **Internet Gateway** for the Public Subnet. <br> - Configure **NAT Gateway** so the Private Subnet can access the internet. | 28/04/2026 | 28/04/2026 | AWS Documentation |
+| 4 | - Practice security configuration with **Security Groups** (stateful) and **NACLs** (stateless). <br> - Compare how these two security layers operate. | 29/04/2026 | 29/04/2026 | Security Essentials |
+| 5 | - Study advanced connectivity: **VPC Peering**, **VPN**, and **Transit Gateway**. <br> - Learn **Elastic Load Balancing (ELB)** to improve availability. <br> - Differentiate between Security Group (stateful) and Network ACL (stateless). | 30/04/2026 | 30/04/2026 | AWS Study Group |
+| 6 | - **Advanced practice:** Configure **NAT Gateway** for a Private Subnet. <br> - Set up **EC2 Instance Connect Endpoint** for secure remote administration. | 1/05/2026 | 1/05/2026 | AWS Workshop |
 
-### Week 3 Achievements:
+### Results achieved in week 3:
 
-* Understood what AWS is and mastered the basic service groups: 
-  * Compute
-  * Storage
-  * Networking 
-  * Database
-  * ...
+* **Network system thinking:**
+    * Built the ability to set up a secure, isolated virtual network environment in the cloud.
+    * Understood how to control inbound and outbound traffic through two defense layers: Security Groups and NACLs.
+* **Implementation skills:**
+    * Learned how to connect cloud resources to the internet or on-premises infrastructure through VPN/Direct Connect.
+    * Understood how load balancers improve application scalability.
+    * Practiced troubleshooting basic VPC connectivity and routing issues.
+* **Create VPC:**
+  ![alt text](image.png)
+* **Create Subnet:**
+  ![alt text](image-1.png)
+* **Create Internet gateways:**
+  ![alt text](image-2.png)
+* **Create Route tables:**
+  ![alt text](image-3.png)
+* **Create Security Groups:**
+  ![alt text](image-4.png)
+* **Create EC2:**
+  ![alt text](image-5.png)
+  ![alt text](image-6.png)
+  ![alt text](image-7.png)
+  ![alt text](image-8.png)
+  ![alt text](image-9.png)
+  ![alt text](image-10.png)
+  ![alt text](image-11.png)
+  ![alt text](image-12.png)
+  ![alt text](image-13.png)
+* **Create NAT Gateways:**
+  ![alt text](image-14.png)
+  ![alt text](image-15.png)
+  ![alt text](image-16.png)
+  ![alt text](image-17.png)
+  ![alt text](image-18.png)
+  ![alt text](image-19.png)
+* **Create EC2 Instance Connect Endpoint:**
+  ![alt text](image-20.png)
+  ![alt text](image-21.png)
+  ![alt text](image-22.png)
 
-* Successfully created and configured an AWS Free Tier account.
-
-* Became familiar with the AWS Management Console and learned how to find, access, and use services via the web interface.
-
-* Installed and configured AWS CLI on the computer, including:
-  * Access Key
-  * Secret Key
-  * Default Region
-  * ...
-
-* Used AWS CLI to perform basic operations such as:
-
-  * Check account & configuration information
-  * Retrieve the list of regions
-  * View EC2 service
-  * Create and manage key pairs
-  * Check information about running services
-  * ...
-
-* Acquired the ability to connect between the web interface and CLI to manage AWS resources in parallel.
-* ...
+{{% notice success %}}
+**Summary:** Mastering VPC provides a solid foundation for deploying services such as EC2 and RDS securely and efficiently.
+{{% /notice %}}

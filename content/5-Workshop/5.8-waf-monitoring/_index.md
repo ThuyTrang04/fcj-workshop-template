@@ -1,91 +1,86 @@
-﻿---
-title : "Cấu hình WAF, giám sát và cảnh báo"
+---
+title : "Configuring WAF, Monitoring, and Alerts"
 date : 2024-01-01
 weight : 8
 chapter : false
 pre : " <b> 5.8. </b> "
 ---
 
-## Mục tiêu
+## Objective
 
-Bước này bổ sung lớp bảo vệ và vận hành cho AWS_OmniStay. CloudFront được gắn AWS WAF để lọc request nguy hiểm. CloudWatch, SNS và CloudWatch Alarms được dùng để theo dõi hệ thống, phát hiện lỗi và cảnh báo khi tài nguyên có dấu hiệu quá tải.
+This step adds protection and operations support for AWS_OmniStay. AWS WAF is attached to CloudFront to filter dangerous requests. CloudWatch, SNS, and CloudWatch Alarms are used to monitor the system, detect errors, and send alerts when resources show signs of overload.
 
-## 1. Tạo AWS WAF Web ACL cho CloudFront
+## 1. Create an AWS WAF Web ACL for CloudFront
 
-Vào **WAF & Shield** -> **Web ACLs** -> **Create web ACL**.
+Go to **WAF & Shield** -> **Web ACLs** -> **Create web ACL**.
 
-Cấu hình:
+Configuration:
 
-| Trường | Giá trị |
+| Field | Value |
 | --- | --- |
 | Resource type | CloudFront distributions |
 | Scope | Global |
 | Name | `omnistay-cloudfront-waf` |
-| Associated resource | CloudFront distribution của AWS_OmniStay |
+| Associated resource | CloudFront distribution of AWS_OmniStay |
 | Default action | Allow |
 
-Managed rule groups nên thêm:
+Managed rule groups to add:
 
-| Rule group | Mục đích |
+| Rule group | Purpose |
 | --- | --- |
-| `AWSManagedRulesCommonRuleSet` | Chặn các request phổ biến có dấu hiệu bất thường |
-| `AWSManagedRulesKnownBadInputsRuleSet` | Chặn input độc hại đã biết |
-| `AWSManagedRulesSQLiRuleSet` | Giảm rủi ro SQL Injection |
-| `AmazonIpReputationList` | Chặn IP có reputation xấu |
+| `AWSManagedRulesCommonRuleSet` | Blocks common requests with abnormal patterns |
+| `AWSManagedRulesKnownBadInputsRuleSet` | Blocks known malicious inputs |
+| `AWSManagedRulesSQLiRuleSet` | Reduces SQL Injection risk |
+| `AmazonIpReputationList` | Blocks IP addresses with poor reputation |
 
-> **Ảnh cần dán:** Web ACL overview của `omnistay-cloudfront-waf`.
->
-> **Ảnh cần dán:** Associated CloudFront distribution.
->
-> **Ảnh cần dán:** Danh sách managed rules đã thêm.
+![VPC details](/images/581.jpg)
+<p align="center"><em>Figure 5.8.1: Web ACL overview of `omnistay-cloudfront-waf`.</em></p>
 
-## 2. Lưu ý rule cho upload ảnh
+## 2. Note About Rules for Image Uploads
 
-Trong tài liệu triển khai AWS_OmniStay, có trường hợp request upload ảnh bị CloudFront/WAF chặn trước khi tới backend. Nếu frontend có chức năng upload ảnh multipart/form-data, cần kiểm tra sampled requests của WAF và thêm allow rule có phạm vi hẹp cho endpoint upload hợp lệ.
+In the AWS_OmniStay deployment documentation, there may be a case where image upload requests are blocked by CloudFront/WAF before reaching the backend. If the frontend includes multipart/form-data image upload functionality, check WAF sampled requests and add a narrowly scoped allow rule for the valid upload endpoint.
 
-Nguyên tắc khi thêm rule:
+Principles when adding the rule:
 
-- Chỉ allow đúng path upload cần thiết, ví dụ `/api/uploads/images`.
-- Đặt rule allow phía trên các managed rules có thể block request.
-- Không disable toàn bộ WAF chỉ để xử lý một endpoint.
-- Kiểm tra lại backend vẫn yêu cầu xác thực người dùng nếu endpoint cần quyền admin/owner.
+- Only allow the required upload path, for example `/api/uploads/images`.
+- Place the allow rule above managed rules that may block the request.
+- Do not disable the entire WAF just to handle one endpoint.
+- Verify that the backend still requires user authentication if the endpoint requires admin/owner permissions.
 
-> **Ảnh cần dán:** Rule allow upload ảnh nếu hệ thống có triển khai chức năng upload.
->
-> **Ảnh cần dán:** WAF sampled requests hoặc log chứng minh request đã đi qua rule đúng.
+![VPC details](/images/582.jpg)
+<p align="center"><em>Figure 5.8.2: Allow rule for image upload if the system implements upload functionality.</em></p>
 
-## 3. Tạo SNS Topic nhận cảnh báo
+## 3. Create an SNS Topic for Alerts
 
-Vào **SNS** -> **Topics** -> **Create topic**.
+Go to **SNS** -> **Topics** -> **Create topic**.
 
-Cấu hình:
+Configuration:
 
-| Trường | Giá trị |
+| Field | Value |
 | --- | --- |
 | Type | Standard |
 | Name | `omnistay-alerts` |
 | Subscription protocol | Email |
-| Endpoint | Email nhận cảnh báo |
+| Endpoint | Email address that receives alerts |
 
-Sau khi tạo subscription, mở email và xác nhận để trạng thái chuyển sang `Confirmed`.
+After creating the subscription, open the email and confirm it so the status changes to `Confirmed`.
 
-> **Ảnh cần dán:** SNS topic `omnistay-alerts`.
->
-> **Ảnh cần dán:** Subscription email có status `Confirmed`.
+![VPC details](/images/583.jpg)
+<p align="center"><em>Figure 5.8.3: SNS topic `omnistay-alerts`.</em></p>
 
-## 4. Tạo CloudWatch Dashboard
+## 4. Create a CloudWatch Dashboard
 
-Vào **CloudWatch** -> **Dashboards** -> **Create dashboard**.
+Go to **CloudWatch** -> **Dashboards** -> **Create dashboard**.
 
-Cấu hình:
+Configuration:
 
-| Trường | Giá trị |
+| Field | Value |
 | --- | --- |
 | Dashboard name | `OmniStay-Demo` |
 
-Các widget nên thêm:
+Recommended widgets:
 
-| Nhóm | Metric |
+| Group | Metric |
 | --- | --- |
 | ALB | `RequestCount` |
 | ALB | `HTTPCode_Target_5XX_Count` |
@@ -97,15 +92,16 @@ Các widget nên thêm:
 | ElastiCache | `CPUUtilization` |
 | ElastiCache | `CurrConnections` |
 
-Dashboard giúp theo dõi nhanh các thành phần chính khi demo hoặc kiểm thử tải.
+The dashboard helps quickly monitor the main components during demos or load testing.
 
-> **Ảnh cần dán:** CloudWatch dashboard `OmniStay-Demo` có các widget ALB, EC2/ASG, RDS và Redis.
+![VPC details](/images/584.jpg)
+<p align="center"><em>Figure 5.8.4: CloudWatch dashboard `OmniStay-Demo`.</em></p>
 
-## 5. Tạo CloudWatch Alarms
+## 5. Create CloudWatch Alarms
 
-Tạo alarm CPU cao cho Auto Scaling Group:
+Create a high CPU alarm for the Auto Scaling Group:
 
-| Trường | Giá trị |
+| Field | Value |
 | --- | --- |
 | Metric | ASG CPUUtilization |
 | Resource | `omnistay-api-asg` |
@@ -113,9 +109,9 @@ Tạo alarm CPU cao cho Auto Scaling Group:
 | Notification | `omnistay-alerts` |
 | Alarm name | `omnistay-asg-cpu-high` |
 
-Tạo alarm lỗi 5XX từ ALB:
+Create a 5XX error alarm from the ALB:
 
-| Trường | Giá trị |
+| Field | Value |
 | --- | --- |
 | Metric | `HTTPCode_Target_5XX_Count` |
 | Resource | `omnistay-alb` |
@@ -123,9 +119,9 @@ Tạo alarm lỗi 5XX từ ALB:
 | Notification | `omnistay-alerts` |
 | Alarm name | `omnistay-alb-5xx-high` |
 
-Tạo alarm CPU cao cho RDS:
+Create a high CPU alarm for RDS:
 
-| Trường | Giá trị |
+| Field | Value |
 | --- | --- |
 | Metric | RDS `CPUUtilization` |
 | Resource | `omnistay-mysql` |
@@ -133,13 +129,12 @@ Tạo alarm CPU cao cho RDS:
 | Notification | `omnistay-alerts` |
 | Alarm name | `omnistay-rds-cpu-high` |
 
-> **Ảnh cần dán:** Danh sách CloudWatch Alarms đã tạo.
->
-> **Ảnh cần dán:** Chi tiết một alarm, ví dụ `omnistay-asg-cpu-high`, có notification tới SNS topic.
+![VPC details](/images/585.jpg)
+<p align="center"><em>Figure 5.8.5: List of created CloudWatch Alarms.</em></p>
 
-## 6. Kiểm soát chi phí trong quá trình chạy demo
+## 6. Control Costs During the Demo
 
-Các tài nguyên cần chú ý vì có thể phát sinh phí theo giờ:
+Resources that require attention because they may generate hourly charges:
 
 - NAT Gateway.
 - Application Load Balancer.
@@ -147,12 +142,10 @@ Các tài nguyên cần chú ý vì có thể phát sinh phí theo giờ:
 - ElastiCache Redis/Valkey.
 - AWS WAF.
 - Public IPv4 address.
-- CloudWatch logs/metrics nếu log nhiều.
+- CloudWatch logs/metrics if many logs are generated.
 
-Trong quá trình làm workshop, cần theo dõi Billing dashboard và budget alert. Nếu chưa demo tiếp, có thể giảm ASG desired capacity hoặc tạm dừng/xóa những tài nguyên tốn phí theo hướng dẫn cleanup riêng sau này.
+During the workshop, monitor the Billing dashboard and budget alerts. If no further demo is needed, reduce the ASG desired capacity or temporarily stop/delete costly resources according to a separate cleanup guide.
 
-> **Ảnh cần dán:** Billing dashboard hoặc Budget status sau khi tạo tài nguyên chính.
+## Expected Result
 
-## Kết quả cần đạt
-
-Sau bước này, CloudFront được bảo vệ bằng WAF, hệ thống có SNS topic nhận cảnh báo, CloudWatch dashboard để quan sát hoạt động và các alarm cơ bản cho CPU, lỗi backend và RDS.
+After this step, CloudFront is protected by WAF, the system has an SNS topic for alerts, a CloudWatch dashboard for observing operations, and basic alarms for CPU, backend errors, and RDS.

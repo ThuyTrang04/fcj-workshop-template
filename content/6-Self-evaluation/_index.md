@@ -1,39 +1,38 @@
 ---
-title: "Self-Assessment"
+title: "Self-evaluation"
 date: 2024-01-01
 weight: 6
 chapter: false
 pre: " <b> 6. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+Throughout the internship and project implementation period, I had the opportunity to learn, practice, and apply the knowledge I had gained at university in a real working environment. I directly participated in the project "High-Load Travel Hotel Booking System on AWS" with two core roles: Business Analyst (BA) and QA/QC Engineer.
 
-During my internship at **[Company/Organization Name]** from **[start date]** to **[end date]**, I had the opportunity to learn, practice, and apply the knowledge acquired in school to a real-world working environment.  
-I participated in **[briefly describe the main project or task]**, through which I improved my skills in **[list skills: programming, analysis, reporting, communication, etc.]**.  
+In the early stage, as a BA, I was responsible for studying business processes, analyzing requirements, preparing the System Requirements Specification (SRS), and designing detailed activity flows showing how requests move through the infrastructure layers. In the later stage, as a QA/QC Engineer, I designed functional test cases, used Postman for automated API testing, and wrote Locust scripts to simulate load for performance testing, Auto Scaling validation, and High Availability verification of the cloud system. Through this process, I significantly improved my professional skills in technical document analysis, flow design thinking, load testing scenario development, report writing, and internal communication.
 
-In terms of work ethic, I always strived to complete tasks well, complied with workplace regulations, and actively engaged with colleagues to improve work efficiency.
+Regarding work attitude, I always tried to complete assigned tasks with high quality, seriously followed organizational rules, and actively communicated with colleagues to improve work efficiency.
 
-To objectively reflect on my internship period, I would like to evaluate myself based on the following criteria:
+To objectively reflect my internship process, I would like to evaluate myself based on the following criteria:
 
-| No. | Criteria                            | Description                                                                                      | Good | Fair | Average |
-| --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | ---- | ---- | ------- |
-| 1   | **Professional knowledge & skills** | Understanding of the field, applying knowledge in practice, proficiency with tools, work quality | ✅    | ☐    | ☐       |
-| 2   | **Ability to learn**                | Ability to absorb new knowledge and learn quickly                                                | ☐    | ✅    | ☐       |
-| 3   | **Proactiveness**                   | Taking initiative, seeking out tasks without waiting for instructions                            | ✅    | ☐    | ☐       |
-| 4   | **Sense of responsibility**         | Completing tasks on time and ensuring quality                                                    | ✅    | ☐    | ☐       |
-| 5   | **Discipline**                      | Adhering to schedules, rules, and work processes                                                 | ☐    | ☐    | ✅       |
-| 6   | **Progressive mindset**             | Willingness to receive feedback and improve oneself                                              | ☐    | ✅    | ☐       |
-| 7   | **Communication**                   | Presenting ideas and reporting work clearly                                                      | ☐    | ✅    | ☐       |
-| 8   | **Teamwork**                        | Working effectively with colleagues and participating in teams                                   | ✅    | ☐    | ☐       |
-| 9   | **Professional conduct**            | Respecting colleagues, partners, and the work environment                                        | ✅    | ☐    | ☐       |
-| 10  | **Problem-solving skills**          | Identifying problems, proposing solutions, and showing creativity                                | ☐    | ✅    | ☐       |
-| 11  | **Contribution to project/team**    | Work effectiveness, innovative ideas, recognition from the team                                  | ✅    | ☐    | ☐       |
-| 12  | **Overall**                         | General evaluation of the entire internship period                                               | ✅    | ☐    | ☐       |
+| No. | Criterion | Description | Good | Fair | Average |
+| --- | --- | --- | --- | --- | --- |
+| 1 | **Professional knowledge and skills** | Understanding of the field, ability to apply knowledge in practice, tool usage skills, and work quality | X |  |  |
+| 2 | **Learning ability** | Ability to absorb new knowledge and learn quickly | X |  |  |
+| 3 | **Proactiveness** | Self-learning and taking on tasks without waiting for detailed instructions | X |  |  |
+| 4 | **Responsibility** | Completing work on time and ensuring quality | X |  |  |
+| 5 | **Discipline** | Following working hours, rules, and work processes | X |  |  |
+| 6 | **Growth mindset** | Willingness to receive feedback and improve myself | X |  |  |
+| 7 | **Communication** | Presenting ideas and reporting work clearly | X |  |  |
+| 8 | **Team collaboration** | Working effectively with colleagues and contributing to the team | X |  |  |
+| 9 | **Professional behavior** | Respecting colleagues, partners, and the working environment | X |  |  |
+| 10 | **Problem-solving thinking** | Identifying problems, proposing solutions, and thinking creatively | X |  |  |
+| 11 | **Contribution to the project/organization** | Work effectiveness, improvement initiatives, and recognition from the team | X |  |  |
+| 12 | **Overall evaluation** | General evaluation of the entire internship process | X |  |  |
 
-### Needs Improvement
+### Direction for Self-improvement and Development
 
-* Strengthen discipline and strictly comply with the rules and regulations of the company or any organization  
-* Improve problem-solving thinking  
-* Enhance communication skills in both daily interactions and professional contexts, including handling situations effectively
+Although I successfully completed the goals set for the internship, I am still aware of the areas I need to continue improving to develop more comprehensively in a professional environment:
+
+* **Strengthening discipline:** Continue maintaining and improving my sense of self-discipline, strictly following rules related to working time, workflows, and organizational regulations in all situations.
+* **Developing problem-solving thinking:** Proactively study system architecture, cloud solutions, and testing process optimization more deeply to propose faster, more optimal, and more comprehensive solutions when handling issues.
+* **Improving communication skills:** Actively practice communicating information and presenting technical solutions in a concise and clear manner during daily work, while also improving my ability to handle situations that arise when coordinating across teams.

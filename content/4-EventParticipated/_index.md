@@ -1,44 +1,62 @@
 ---
-title: "Events Participated"
+title: "Events Attended"
 date: 2024-01-01
 weight: 4
 chapter: false
 pre: " <b> 4. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** for your report, including this warning.
-{{% /notice %}}
-
-> In this section, you should list and describe in detail the events you have participated in during your internship or work experience.  
-> 
-> Each event should be presented in the format Event 1, Event 2, Event 3…, along with the following details:
-> * Event name
-> * Date and time
-> * Location (if applicable)
-> * Your role in the event (attendee, event support, speaker, etc.)
-> * A brief description of the event’s content and main activities
-> * Outcomes or value gained (lessons learned, new skills, contribution to the team/project)
-> * This listing helps demonstrate your actual participation as well as the soft skills and experience you have gained from each event.
-
-During my internship, I participated in two events. Each one was a memorable experience that provided new, interesting, and useful knowledge, along with gifts and wonderful moments.
-
-### [Event 1](4.1-Event1/)  
-&emsp;**Event Name:** GenAI-powered App-DB Modernization workshop  
-
-&emsp;**Date & Time:** 09:00, August 13, 2025  
-
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
-
-&emsp;**Role:** Attendee  
+During the internship, I attended two events. Each event was a memorable experience that brought new, useful knowledge, as well as meaningful gifts and wonderful moments.
 
 ---
 
-### [Event 2](4.2-Event2/)  
-&emsp;**Event Name:** GenAI-powered App-DB Modernization workshop  
+### [Event 1](4.1-Event1/) | Automated Prompt Engineering: Enhancing LLM Output Quality
 
-&emsp;**Date & Time:** 09:00, August 13, 2025  
+| Field | Details |
+| :--- | :--- |
+| **Time** | 09:00 on 09/05/2026 |
+| **Location** | 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City |
+| **Role** | Attendee |
 
-&emsp;**Location:** 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Saigon Ward, Ho Chi Minh City  
+#### Brief description of content and main activities
 
-&emsp;**Role:** Attendee  
+The workshop focused on the art of designing and optimizing prompts to solve real-world problems such as token waste, inconsistent output, and productivity loss when working with LLMs.
+
+The speaker analyzed:
+
+* **7 core components of a high-quality prompt:** Role, Instruction, Context, Input Data, Output Format, Examples, and Constraints.
+* **Token Economics:** Methods for optimizing AI system operating cost.
+* **Advanced prompt techniques:** Chain-of-Thought (CoT), Self-Consistency, Tree-of-Thoughts (ToT), and RAG.
+* **Practical hands-on content:** Introduction to the Solution Architecture of the Proptimizer tool running on AWS, using Amazon Bedrock, AWS Lambda, and Amazon DynamoDB.
+
+#### Outcomes and value gained
+
+> **Technology mindset shift:** Learned principles for communicating effectively with AI, including being specific, focusing on what the AI should do instead of only listing restrictions, and using delimiters.
+>
+> **Practical application:** Learned how to optimize prompt systems for writing test cases, analyzing documents/business requirements (BA), and applying Chain-of-Thought reasoning to solve complex programming problems in Java and Flutter.
+
+---
+
+### [Event 2](4.2-Event2/) | AWS Vietnam Community Day 2026
+
+| Field | Details |
+| :--- | :--- |
+| **Time** | 09:00 on 23/05/2026 |
+| **Location** | 26th Floor, Bitexco Tower, 02 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City |
+| **Role** | Attendee |
+
+#### Brief description of content and main activities
+
+This large-scale technology event gathered many industry experts to share the latest trends in Cloud Computing and Artificial Intelligence. Core knowledge topics included:
+
+* **Build Second Brain:** A method for managing and organizing personal knowledge context in the AI era.
+* **Amazon CloudFront:** The role of CDN in reducing latency, accelerating content delivery, securing systems with AWS Shield/WAF, and optimizing cost for distributed systems.
+* **Amazon Q & Multi-Agent AI:** Intelligent enterprise assistants and enterprise-grade multi-agent AI coordination architecture.
+* **LLM operating mechanisms:** Analysis of non-determinism through Temperature, Top-K, and Top-P parameters to control hallucination.
+* **Real case study:** The 36-hour high-pressure journey of Team VIB at the LotusHacks hackathon, bringing the UTMorpho product from idea to reality.
+
+#### Outcomes and value gained
+
+> **System thinking:** Understood how large enterprises apply the AWS ecosystem and AI models in real operations. Gained deeper knowledge of cloud infrastructure and the token generation mechanism of LLMs.
+>
+> **Soft skills and direction:** Learned product design thinking, problem-solving skills, and teamwork under high pressure. This became a foundation for continuing to optimize personal labs and clarifying my future career development path.
